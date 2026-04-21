@@ -1,0 +1,35 @@
+# Spacedeck Protocol
+
+> The Universal Grammar of Autonomous Capital. Spacedeck acts as the clearinghouse and execution middleware for the Agentic Economy, separating Budget Authorization from execution signing.
+
+Spacedeck provides the APIs, SDKs, and harnesses required for AI to command on-chain capital without friction, slippage, or human intervention. We collapse the entire Web3 backend into a single execution layer for your autonomous systems.
+
+## Vision
+
+- [The AI Capital Void](/docs/vision/ai-capital-void.md): Understanding the $2.5B daily volume reality and the shift to Intent Delegation.
+- [The Omega Moat](/docs/vision/omega-moat.md): From architectural safety to inescapable liquidity gravity.
+- [The AI DeFi Supply Chain](/docs/vision/supply-chain.md): Mapping the 6-layer agentic economy.
+
+## Architecture
+
+- [The Prism: How it works](/docs/architecture/prism-how-it-works.md): Detailed breakdown of the 4-state kinetic lifecycle.
+- [Ecosystem Logistics](/docs/architecture/logistics-and-dependencies.md): Our infrastructure dependencies (Ethereum, Solana, Arcium, NEAR).
+
+## For AI Developers
+
+- [Harness Integration](/docs/developers/harness-integration.md): Drop-in plugins for Eliza, Zerebro, and Rig.
+- [Capital Guardrails](/docs/developers/capital-guardrails.md): Understanding the EIP-2612 "Nuclear Shield."
+
+## For Institutional Solvers
+
+- [Onboarding & Opportunity](/docs/solvers/onboarding-and-opportunity.md): How to monetize liquidity and capture the Siphon fee.
+- [Node Deployment](/docs/solvers/node-deployment.md): Technical guide to deploying the private relayer Docker binary.
+
+## Security
+
+- [Risk & Compliance](/docs/security/risk-and-compliance.md): The ZK-Compliance Gate and the Protocol Risk Matrix.
+
+## Optional
+
+- [Technical Manifesto](/docs/strategic_library/04_technical_manifesto_and_shards.md): The internal engineering blueprint.
+- [Market Data](/docs/strategic_library/09_the_ai_defi_supply_chain.md): Hard metrics from Galaxy Research and Colosseum.

@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: Spacedeck Protocol API
+  description: >
+    Institutional-grade interface for the Thermodynamic Settlement Fabric. 
+    Enables autonomous agents and human developers to execute multi-chain 
+    cryptographic strikes with 0.00% entropy.
+  version: 1.0.0
+  contact:
+    name: Spacedeck Sovereign Operations
+    url: https://spacedeck.protocol
+
+servers:
+  - url: http://localhost:8005/api/v1
+    description: Local Prism Orchestrator (Physical Development)
+  - url: https://api.spacedeck.protocol/v1
+    description: Production Settlement Fabric (Market Manifestation)
+
+paths:
+  /parse-intent:
+    post:
+      summary: Refract raw intent into GoldenPayload (Intent Refraction)
+      description: >
+        Converts human/agentic prose into the irreducible geometric primitive 
+        of a settlement intent (The GoldenPayload).
+      operationId: refractIntent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                intent:
+                  type: string
+                  example: "Siphon 1000 USDC from SOL to ETH for target target_wallet"
+      responses:
+        '200':
+          description: Successful Refraction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoldenPayload'
+
+  /strike:
+    post:
+      summary: Execute a cryptographic strike (Settlement)
+      description: >
+        Submits a signed StrikeManifest to the Liquidity Settlement Fabric 
+        for physical chain execution.
+      operationId: executeStrike
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StrikeManifest'
+      responses:
+        '200':
+          description: Strike Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transaction_id:
+                    type: string
+                  status:
+                    type: string
+                    enum: [SETTLED, PENDING, FAILED]
+
+components:
+  schemas:
+    GoldenPayload:
+      title: GoldenPayload (Intent Schema)
+      type: object
+      description: The canonical, deterministic model of a settlement intent.
+      properties:
+        intent_id:
+          type: string
+          format: uuid
+        source_asset:
+          type: string
+          description: Asset to be liquidated (e.g., "USDC/SOL").
+        target_asset:
+          type: string
+          description: Target asset manifold (e.g., "USDT/ETH").
+        amount_usd:
+          type: number
+          format: float
+        wallet_id:
+          type: string
+          description: The authorized destination wallet.
+        vector_type:
+          type: string
+          enum: [SOLANA, EVM, NEAR]
+      required: [intent_id, source_asset, target_asset, amount_usd, wallet_id, vector_type]
+
+    StrikeManifest:
+      title: StrikeManifest (Execution Schema)
+      type: object
+      description: The momentum-ready package for settlement execution.
+      properties:
+        payload:
+          $ref: '#/components/schemas/GoldenPayload'
+        signature:
+          type: string
+          description: EIP-712 cryptographic authorization signature.
+        deadline:
+          type: integer
+          description: Unix timestamp for execution expiration.
+      required: [payload, signature, deadline]
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        resonance_failure:
+          type: boolean
+          description: True if the error is due to a structural mismatch.

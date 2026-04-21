@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StrikeManifest",
+  "description": "The momentum-ready strike request to the Liquidity Settlement Fabric.",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "$ref": "./intent.json"
+    },
+    "signature": {
+      "type": "string",
+      "description": "The EIP-712 cryptographic signature authorized by the Risk & Compliance Sentinel."
+    },
+    "deadline": {
+      "type": "integer",
+      "description": "Unix timestamp for the settlement deadline."
+    }
+  },
+  "required": ["payload", "signature", "deadline"]
+}

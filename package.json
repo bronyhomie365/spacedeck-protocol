@@ -1,0 +1,20 @@
+{
+  "name": "spacedeck-prod",
+  "private": true,
+  "description": "The Sovereign Execution Layer for Autonomous Capital",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*",
+    "plugins/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  }
+}

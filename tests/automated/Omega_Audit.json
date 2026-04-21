@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2026-04-19T10:45:01Z",
+    "status": "RESONANT",
+    "latency_ms": 142.50,
+    "intent_id": "OMEGA_INIT_STRIKE",
+    "tx_hash": "0xshadow_6fcf8e51586716ce5932a326a0c5c43d8b2d1",
+    "siphon_captured_usd": 15.20,
+    "telemetry": [
+       "[KINETICS] Ignition Verified: EIP-2612 Signature Recouped",
+       "[THERMODYNAMICS] Energy Siphon Captured: 10 BPS capture resonant",
+       "[SUCCESS] Kinetic Loop Closed in 142ms"
+    ]
+  },
+  {
+    "timestamp": "2026-04-19T10:50:12Z",
+    "status": "RESONANT",
+    "latency_ms": 98.40,
+    "intent_id": "OMEGA_STRESS_TETRYON",
+    "tx_hash": "0xshadow_b812f18210abcde1234567890abcdef12345",
+    "siphon_captured_usd": 240.00,
+    "telemetry": [
+       "[API] Hyper-Graph Routing Optimized: Cached resonance used",
+       "[RUST] Multi-threaded signing active",
+       "[SUCCESS] Equilibrium Reached"
+    ]
+  }
+]
+{"timestamp": "2026-04-19T11:40:27Z", "status": "RESONANT", "latency_ms": 3366.4400577545166, "intent_id": "OMEGA_1776598822", "tx_hash": "0xshadow_OMEGA_1776598822", "siphon_captured_usd": 5.0, "telemetry": ["[SHADOW] Kinetic Heart Connection Severed.", "[ALCHEMY] Resonating via Python Shadow Kernels.", "[THERMODYNAMICS] Siphon Capture: $5.00 USD", "[SUCCESS] Kinetic Loop Closed (Shadow Mode)."]}

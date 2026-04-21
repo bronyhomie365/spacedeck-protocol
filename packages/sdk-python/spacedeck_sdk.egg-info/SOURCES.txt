@@ -1,0 +1,6 @@
+setup.py
+spacedeck_sdk.egg-info/PKG-INFO
+spacedeck_sdk.egg-info/SOURCES.txt
+spacedeck_sdk.egg-info/dependency_links.txt
+spacedeck_sdk.egg-info/requires.txt
+spacedeck_sdk.egg-info/top_level.txt

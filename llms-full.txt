@@ -1,0 +1,222 @@
+# Spacedeck Protocol: Full Documentation Aggregate
+
+> Comprehensive technical context for AI Agents and Institutional Developers.
+
+---
+
+## Source: README.md
+
+# Spacedeck Protocol 🛰️
+### Autonomous Settlement Protocol [Intent → Capital → Transaction]
+
+[![Discoverable by Agents](https://img.shields.io/badge/Agentic-Discoverable-teal?style=flat-square)](./llms.txt)
+[![Sovereign Architecture](https://img.shields.io/badge/Architecture-Sovereign-slate?style=flat-square)](./docs/pages/reference/technical-overview.md)
+[![TypeScript SDK](https://img.shields.io/badge/Polymorphic-TypeScript-blue?style=flat-square)](./packages/sdk)
+[![Python SDK](https://img.shields.io/badge/Agentic-Python-yellow?style=flat-square)](./packages/sdk-python)
+[![License: Sovereign](https://img.shields.io/badge/License-Sovereign-8a2be2.svg?style=flat-square)](./LICENSE)
+
+Spacedeck is the high-velocity **Autonomous Settlement Protocol** designed for the agentic economy. We provide the deterministic DeFi rails required for **A2A (Agent-to-Agent)** and **Machine-to-Machine** settlement, physically bridging the gap from raw agentic **Intent** to authorized **Capital** and final on-chain **Transaction**.
+
+---
+
+## 🧭 The Holographic Overview
+
+*   [The Settlement Architecture](#-the-settlement-architecture)
+*   [The AI DeFi Supply Chain](#-the-ai-defi-supply-chain)
+*   [Target Vectors (Use Cases)](#-target-vectors-use-cases)
+*   [The Manifest (Public Shards)](#-the-manifest-public-shards)
+*   [Quickstart: Physical Ignition](#-quickstart-physical-ignition)
+
+---
+
+## ⚙️ The Settlement Architecture
+
+Spacedeck decouples *decision-making* from *capital authorization* via a strict **Dual-EIP Handshake**. The Agent commands the strategy; the Protocol guards the treasury.
+
+```mermaid
+graph LR
+    Agent["🤖 AI Agent"] -->|"1. NLP to JSON"| Prism["The Prism"]
+    Prism -->|"2. EIP-712 Intent Auth"| Gate{"Sentinel Gate"}
+    Manager["👔 Portfolio Manager"] -.->|"0. EIP-2612 Capital Permit"| Gate
+    Gate -->|"3. ZK-Compliant"| Auction["Solver Auction"]
+    Auction -->|"4. Kinetic Strike"| Settlement["⚡ Final Settlement"]
+```
+
+---
+
+## 🏗️ The AI DeFi Supply Chain
+Spacedeck sits at the critical Layer 4 of the autonomous economy, serving as the inescapable bottleneck between agentic intelligence and institutional fulfillment.
+
+1.  **Intelligence Layer (L1-L2):** GPU Compute & Foundation Models (OpenAI, DeepSeek).
+2.  **Framework Layer (L3):** Agentic OS frameworks (Eliza, Zerebro, Rig).
+3.  **The Faucets:** Developer-built bots, DAOs, and AI Hedge Funds managing treasuries.
+4.  **THE PRISM (Layer 4):** Spacedeck settles raw agentic intent into structured capital movement.
+5.  **The Solvers (Layer 5):** Institutional Market Makers (Jump, Wintermute) fulfilling the intent.
+6.  **The Settlement Layer (L6):** Finality on Solana / EVM networks.
+
+---
+
+## 🎯 Target Vectors (Use Cases)
+
+| Vector | Focus | The Spacedeck Value |
+| :--- | :--- | :--- |
+| **B2C Bots** | Consumer Wealth Agents | NLP-to-Settlement and 100% keyless user safety. |
+| **B2B Alpha** | AI-Managed Hedge Funds | **Dual-EIP Handshake:** Pre-approved budgets with autonomous strike execution. |
+| **Supply-Side** | Solvers & Market Makers | High-fidelity, ZK-sanitized orderflow from the agentic economy. |
+
+---
+
+## 🏗️ The Manifest (Public Shards)
+
+*   **[Prism Logic Layer](./packages/sdk) (Intent Parser):** Converts raw agent prose into deterministic settlement schemas.
+*   **[Risk & Compliance Sentinel](./packages/contracts) (Security Gate):** The Dual-EIP (712/2612) signature verification and ZK-sanctions layer.
+*   **[Autonomous Settlement Fabric](./apps/web) (The Siphon):** High-velocity settlement gateway where multi-chain intents are physicalized.
+*   **[Python SDK](./packages/sdk-python) (The Agentic Bridge):** Native integration for the Eliza and Zerebro ecosystems.
+
+---
+
+## 🌌 Quickstart: Sub-Atomic Integration
+
+Spacedeck provides zero-friction physical integration vectors for the most dominant agentic frameworks in the economy.
+
+### 1. Zerebro Harness (Python)
+Drop-in integration for Zerebro agent loops.
+
+```bash
+pip install spacedeck-zerebro-harness
+```
+```python
+import os, asyncio
+from spacedeck_zerebro import ZerebroHarness
+
+async def main():
+    harness = ZerebroHarness(api_key=os.environ.get("SPACEDECK_API_KEY", ""))
+    receipt = await harness.strike("Liquidate 50k USDC for SOL on Jupiter")
+    print(f"Strike settled via {receipt.get('solver_id')}")
+
+asyncio.run(main())
+```
+
+### 2. Eliza Plugin (TypeScript)
+Native Action registration for the Eliza framework.
+
+```bash
+npm install @spacedeck/eliza-plugin
+```
+```typescript
+import { spacedeckPlugin } from "@spacedeck/eliza-plugin";
+
+// Automatically registers the 'EXECUTE_SPACEDECK_INTENT' action
+const agent = new ElizaAgent({
+  plugins: [spacedeckPlugin],
+});
+```
+
+### 3. Core Protocol SDK (Python / TypeScript)
+For custom orchestration and deterministic architecture.
+
+```bash
+npm install @spacedeck/sdk    # TypeScript
+pip install spacedeck-sdk     # Python
+```
+
+<details>
+<summary><b>View Python SDK Example</b></summary>
+
+```python
+import asyncio
+from spacedeck_sdk.client import SpacedeckClient
+from spacedeck_sdk.schemas import ExecutionRequest
+
+async def main():
+    client = SpacedeckClient(api_key="sk_spacedeck_...")
+    
+    # 1. Parse the abstract intent into a GoldenPayload
+    payload = await client.parse_intent("Liquidate 50k USDC for SOL on Jupiter", "agent_wallet_1")
+    
+    # 2. Package the execution request (EIP-712 Auth)
+    request = ExecutionRequest(
+        payload=payload,
+        signature="0x_EIP712_DUMMY_SIGNATURE_SKIPPED_IN_SHADOW",
+        deadline=9999999999
+    )
+    
+    # 3. Initiate an Autonomous Transaction Settlement
+    strike_receipt = await client.execute_strike(request)
+    print(f"Strike Finalized. Solver: {strike_receipt.get('solver_id')}") 
+
+asyncio.run(main())
+```
+</details>
+
+### For Engineering Teams
+1.  **Clone** this interface repository to access the smart contracts and infrastructure shards.
+2.  **Configure** your institutional budget via the [Dual-EIP Handshake](./docs/pages/security/eip2612.md).
+3.  **Initiate** your first **Autonomous Transaction Settlement** via the Prism API.
+
+### For Autonomous Agents
+Spacedeck is optimized for **Zero-Shot Ingestion**.
+- Parse the **[llms.txt](./llms.txt)** for a total architectural overview.
+- Adopt the **[.cursorrules](./.cursorrules)** for deterministic development alignment.
+
+---
+
+## ⚖️ License
+The Spacedeck Interface Shard is released under the **Sovereign Open Source License**. See [LICENSE](./LICENSE) for details.
+
+---
+
+---
+
+## Source: docs/DEPLOYMENT_PLAYBOOK.md
+
+# 🚀 THE SOVEREIGN DEPLOYMENT PLAYBOOK
+**CONTEXT:** Scaling the MentalOS Manifold to the Global Realm
+
+This playbook defines the deterministic path for deploying your pristine monorepo structure to Vercel and Fly.io.
+
+---
+
+## ☁️ 1. FRONTEND: THE GLASS VESSEL (VERCEL)
+**Target:** `apps/web`
+
+### Prerequisites
+- Install Vercel CLI: `npm install -g vercel`
+
+### Deployment Ritual
+1.  **Initialize:** `vercel login`
+2.  **Ignite:** `vercel link` (Select `apps/web` as the root)
+3.  **Deploy (Preview):** `vercel`
+4.  **Promote (Production):** `vercel --prod`
+
+### Env Variables (Gevurah Vault)
+Ensure the following are set in the Vercel Dashboard:
+- `NEXT_PUBLIC_API_URL`: Your backend URL (e.g. `https://api.yourproject.com`)
+
+---
+
+## ⚡ 2. BACKEND: THE KINETIC HEART (FLY.IO)
+**Target:** `services/api` & `services/engine`
+
+### Prerequisites
+- Install Fly CLI: `curl -L https://fly.io/install.sh | sh`
+
+### Deployment Ritual
+1.  **Initialize:** `fly launch` inside each service folder.
+2.  **Harden:** Fly will detect the `Dockerfile` automatically.
+3.  **Deploy:** `fly deploy`
+
+### Scaling
+`fly scale count 2` to ensure high-availability of the Orchestrator.
+
+---
+
+## 🐙 3. GIT SOVEREIGNTY (VERSION CONTROL)
+
+- **Main Branch:** The Showroom. High-quality commits only.
+- **Actions:** Use GitHub Actions for automated `Omega-Scan` (Testing) on every Push.
+- **Cleanliness:** Use `.gitignore` to keep the environment debris out of the manifold.
+
+---
+
+

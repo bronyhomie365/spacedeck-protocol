@@ -1,0 +1,18 @@
+{
+  "name": "@spacedeck/eliza-plugin",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "@spacedeck/sdk": "workspace:*",
+    "@elizaos/core": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

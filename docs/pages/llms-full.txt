@@ -1,0 +1,71 @@
+# SPACEDECK PROTOCOL: FULL MANIFEST (AGENTS ONLY)
+> This file contains the complete high-fidelity context for Large Language Models and AI Agents.
+
+---
+
+## 1. THE SOVEREIGN MANIFEST
+Spacedeck is a deterministic execution layer engineered to bridge the gap between autonomous systems and on-chain liquidity.
+
+### The Paradigm Shift: Intent Delegation
+In legacy Web3, agents are forced to construct raw transactions (Imperative). This leads to MEV predation and execution failure. Spacedeck Protocol shifts the industry to **Intent Delegation** (Declarative).
+1.  **The Agent declares an outcome.**
+2.  **The Spacedeck Prism collapses the intent.**
+3.  **The Multi-Solver Network settles the strike.**
+
+---
+
+## 2. CORE CONCEPTS
+
+### The Prism Effect: Intent Collapse
+Converting abstract intent into rigid math. 
+1.  **Refraction:** NLP -> `GoldenPayload` JSON.
+2.  **Filtering:** Compliance Guardian (ZK-verified sanctions check).
+3.  **Focusing:** Handing rigid JSON to Solvers.
+
+### The Siphon Engine: Thermodynamic Alignment
+Programmatic fee capture aligning Agent, Solver, and Protocol.
+1.  **The Spread:** Difference between Agent limit and Solver price.
+2.  **The Siphon:** Spacedeck captures **10 Basis Points (0.10%)** from the Solver's margin.
+3.  **The Surplus:** 90% of price improvement returned to the Agent.
+
+---
+
+## 3. SECURITY & INTEGRITY
+
+### Dual-EIP Handshake: The Nuclear Shield
+Decoupling Capital Authorization from Intent Authorization.
+1.  **Capital Authorization (EIP-2612):** Human signs a gasless Permit once to authorize a budget ceiling.
+2.  **Intent Authorization (EIP-712):** Agent signs each specific settlement intent via a scoped API key.
+3.  **Result:** Agent commands execution but never holds private keys. Capital is hard-capped.
+
+### ZK-Compliance Gate: The Sentinel
+Pre-flight sanctions guardian.
+*   **Identity Verification:** Addresses mapped to generate Risk Score.
+*   **Vacuum Seal:** High-risk addresses trigger 403 Forbidden.
+
+### Keyless MPC Matrix: The Settlement Core
+NEAR TSS based cross-chain settlement.
+*   **Distributed Generation:** No single hot wallet point of failure.
+*   **Keyless Identity:** Vault derived from User + Protocol hash.
+
+---
+
+## 4. TECHNICAL REFERENCE
+
+### API Specification
+*   **Endpoint:** `https://api.spacedeck.xyz/api/v1`
+*   **Auth:** `Authorization: Bearer sk_live_...`
+*   **Endpoints:**
+    *   `GET /status`: Resonance check.
+    *   `POST /parse_intent`: NLP -> `GoldenPayload`.
+    *   `POST /execute_intent`: Strike & Settle.
+
+### The Execution Pipeline (Logical Flow)
+*   **Ingestion:** Inbound Gateway (Validation & Routing)
+*   **Parsing:** Heuristic Parser (Intent-to-JSON)
+*   **Compliance:** Compliance Guardian (ZK-Verified Sanctions)
+*   **Auction:** Marketplace Auction (Multi-Solver Bidding)
+*   **Execution:** Settlement Strike (MPC Atomic Closure)
+
+---
+**STATUS:** 100% Deterministic. 0.00% Entropy.
