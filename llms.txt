@@ -1,27 +1,26 @@
 # Spacedeck Protocol Documentation
 
-> The high-velocity Autonomous Settlement Protocol for the agentic economy.
+> The high-velocity Autonomous Settlement Protocol for the Solana Virtual Machine (SVM).
 
 This file provides an index of key documentation for AI agents and developers, following the [llmstxt.org](https://llmstxt.org) standard.
 
 ## Core Integration Paths
 
-- [Quickstart Guide](/README.md#quickstart): Immediate integration pathways for Eliza, Zerebro, and SDK consumers.
-- [TypeScript SDK](/packages/sdk/README.md): Technical reference for the Node.js settlement library.
-- [Python SDK](/packages/sdk-python/README.md): API reference for Python-based agentic harnesses.
-- [Eliza Plugin](/packages/eliza-plugin/README.md): Action schemas and integration steps for Eliza framework.
-- [Zerebro Harness](/packages/zerebro-harness/README.md): High-performance harness for Zerebro agent loops.
+- [Quickstart Guide](/README.md#-quickstart-svm-integration): Immediate integration pathways for Eliza, Zerebro, and SDK consumers.
+- [Solana Program (Anchor)](/packages/contracts/anchor): Technical reference for the SVM settlement logic.
+- [Python SDK](/packages/sdk-python/README.md): API reference for the Jito-enhanced Python harness.
 
-## Core Concepts
+## Core Concepts (SVM Native)
 
-- [Intent Refraction](/docs/CONCEPTS.md#intent-refraction): How abstract NL is converted into deterministic GoldenPayload schemas.
-- [Dual-EIP Security](/docs/CONCEPTS.md#dual-eip-security): Details on the EIP-712 Intent and EIP-2612 Capital authorization handshake.
-- [Kinetic Settlement](/docs/CONCEPTS.md#kinetic-settlement): Atomic transaction execution via institutional solver auctions.
+1.  **8-Step Kinetic Lifecycle**: Exhaustive end-to-end settlement manifest.
+2.  **PDA Budget Delegation**: Programmatic authority delegation on Solana.
+3.  **Jito Bundle Optimization**: MEV-protection for agentic intents.
+4.  **ZK-Sanitized Intents**: Confidentiality layer via Arcium integration.
 
 ## Developer Resources
 
-- [API Endpoints](/README.md#api-endpoints): RESTful interface for the Prism Orchestrator and compliance screening.
-- [Institutional Alignment](/docs/strategic_library/04_technical_manifesto_and_shards.md): Technical governance and liquidity fabric coordination.
+- [Institutional Stack](/README.md#-strategic-integration-stack): Technical coordination with Arcium, Near, and Jito.
+- [API Endpoints](/README.md#api-endpoints): Deterministic interface for the Prism Orchestrator.
 
 ## Full Context
 - [LLMS-full.txt](/llms-full.txt): Comprehensive aggregate of all documentation for deep model ingestion.

@@ -3,156 +3,112 @@
 
 [![Discoverable by Agents](https://img.shields.io/badge/Agentic-Discoverable-teal?style=flat-square)](./llms.txt)
 [![Sovereign Architecture](https://img.shields.io/badge/Architecture-Sovereign-slate?style=flat-square)](./docs/pages/reference/technical-overview.md)
-[![TypeScript SDK](https://img.shields.io/badge/Polymorphic-TypeScript-blue?style=flat-square)](./packages/sdk)
+[![Solana Program](https://img.shields.io/badge/SVM-Anchor-orange?style=flat-square)](./packages/contracts/anchor)
 [![Python SDK](https://img.shields.io/badge/Agentic-Python-yellow?style=flat-square)](./packages/sdk-python)
-[![License: Sovereign](https://img.shields.io/badge/License-Sovereign-8a2be2.svg?style=flat-square)](./LICENSE)
 
-Spacedeck is the high-velocity **Autonomous Settlement Protocol** designed for the agentic economy. We provide the deterministic DeFi rails required for **A2A (Agent-to-Agent)** and **Machine-to-Machine** settlement, physically bridging the gap from raw agentic **Intent** to authorized **Capital** and final on-chain **Transaction**.
+Spacedeck is the high-velocity **Autonomous Settlement Protocol** designed for the Solana Virtual Machine (SVM). We provide the deterministic DeFi rails required for **A2A (Agent-to-Agent)** and **Machine-to-Machine** settlement.
 
----
-
-## 🧭 The Holographic Overview
-
-*   [The Settlement Architecture](#-the-settlement-architecture)
-*   [The AI DeFi Supply Chain](#-the-ai-defi-supply-chain)
-*   [Target Vectors (Use Cases)](#-target-vectors-use-cases)
-*   [The Manifest (Public Shards)](#-the-manifest-public-shards)
-*   [Quickstart: Physical Ignition](#-quickstart-physical-ignition)
+> **"The SVM operates at the speed of light. We give AI the terminal to pilot it."**
 
 ---
 
-## ⚙️ The Settlement Architecture
+## 🏛️ Strategic Integration Stack
 
-Spacedeck decouples *decision-making* from *capital authorization* via a strict **Dual-EIP Handshake**. The Agent commands the strategy; the Protocol guards the treasury.
+| Pillar | SVM Ideal State | Strategic Stack | Institutional Edge |
+| :--- | :--- | :--- | :--- |
+| **Privacy** | **ZK-Sanitized Intents** | **Arcium** | Total institutional confidentiality for agentic intent. |
+| **Identity** | **Chain Abstraction** | **Near MPC** | Programmatic, cross-chain authority without keys. |
+| **Execution** | **Jito Bundle Striking** | **Jito / Anchor** | Zero MEV-leakage & absolute 400ms finality. |
+
+---
+
+## ⚙️ The Settlement Architecture (SVM Native)
+
+Spacedeck decouples *decision-making* from *capital authorization* via a strict **PDA Budget Delegation**. The Agent commands the strategy; the Protocol guards the treasury.
 
 ```mermaid
 graph LR
-    Agent["🤖 AI Agent"] -->|"1. NLP to JSON"| Prism["The Prism"]
-    Prism -->|"2. EIP-712 Intent Auth"| Gate{"Sentinel Gate"}
-    Manager["👔 Portfolio Manager"] -.->|"0. EIP-2612 Capital Permit"| Gate
-    Gate -->|"3. ZK-Compliant"| Auction["Solver Auction"]
-    Auction -->|"4. Kinetic Strike"| Settlement["⚡ Final Settlement"]
+    Agent["🤖 AI Agent"] -->|"1. Intent to JSON"| Prism["Prism ORC"]
+    Prism -->|"2. ZK-Sanitized"| Arcium["Arcium Vault"]
+    Arcium -->|"3. PDA Delegation"| Gate{"Sentinel Gate"}
+    Gate -->|"4. Jito Bundle"| Auction["Solver Auction"]
+    Auction -->|"5. Kinetic Strike"| Settlement["⚡ 400ms Finality"]
 ```
 
 ---
 
 ## 🏗️ The AI DeFi Supply Chain
-Spacedeck sits at the critical Layer 4 of the autonomous economy, serving as the inescapable bottleneck between agentic intelligence and institutional fulfillment.
+Spacedeck sits at the critical Layer 4 of the autonomous economy, serving as the inescapable bottleneck between agentic intelligence and institutional fulfillment on Solana.
 
 1.  **Intelligence Layer (L1-L2):** GPU Compute & Foundation Models (OpenAI, DeepSeek).
 2.  **Framework Layer (L3):** Agentic OS frameworks (Eliza, Zerebro, Rig).
-3.  **The Faucets:** Developer-built bots, DAOs, and AI Hedge Funds managing treasuries.
-4.  **THE PRISM (Layer 4):** Spacedeck settles raw agentic intent into structured capital movement.
-5.  **The Solvers (Layer 5):** Institutional Market Makers (Jump, Wintermute) fulfilling the intent.
-6.  **The Settlement Layer (L6):** Finality on Solana / EVM networks.
+3.  **THE PRISM (Layer 4):** Spacedeck settles raw agentic intent into structured SVM instruction sets.
+4.  **The Solvers (Layer 5):** Institutional Market Makers fulfilling intent via private Jito bundles.
+5.  **The Settlement Layer (L6):** 400ms Finality on the Solana Mainnet.
 
 ---
 
-## 🎯 Target Vectors (Use Cases)
+## ⚡ The Kinetic Lifecycle (End-to-End)
 
-| Vector | Focus | The Spacedeck Value |
-| :--- | :--- | :--- |
-| **B2C Bots** | Consumer Wealth Agents | NLP-to-Settlement and 100% keyless user safety. |
-| **B2B Alpha** | AI-Managed Hedge Funds | **Dual-EIP Handshake:** Pre-approved budgets with autonomous strike execution. |
-| **Supply-Side** | Solvers & Market Makers | High-fidelity, ZK-sanitized orderflow from the agentic economy. |
+Exhaustive, deterministic settlement in 8 sub-atomic steps:
+
+1.  **Keyless connection** (Near MPC)
+2.  **ZK-sanitized intent** (Arcium Privacy)
+3.  **Deterministic parsing** (Prism LLM)
+4.  **PDA delegation** (Solana Authority)
+5.  **Solver auction** (Price Discovery)
+6.  **Jito-bundle strike** (MEV Protection)
+7.  **Atomic settlement** (400ms SVM)
+8.  **Waterfall telemetry** (Real-time Audit)
 
 ---
 
-## 🏗️ The Manifest (Public Shards)
+## 🏗️ The Manifest (Solana Shards)
 
-*   **[Prism Logic Layer](./packages/sdk) (Intent Parser):** Converts raw agent prose into deterministic settlement schemas.
-*   **[Risk & Compliance Sentinel](./packages/contracts) (Security Gate):** The Dual-EIP (712/2612) signature verification and ZK-sanctions layer.
-*   **[Autonomous Settlement Fabric](./apps/web) (The Siphon):** High-velocity settlement gateway where multi-chain intents are physicalized.
+*   **[Prism Logic Layer](./packages/sdk) (Intent Parser):** Converts raw agent prose into deterministic SVM settlement schemas.
+*   **[Risk & Compliance Sentinel](./packages/contracts/anchor) (Solana Program):** The PDA-based delegation and ZK-sanctions layer.
 *   **[Python SDK](./packages/sdk-python) (The Agentic Bridge):** Native integration for the Eliza and Zerebro ecosystems.
 
 ---
 
-## 🌌 Quickstart: Sub-Atomic Integration
+## 🌌 Quickstart: SVM Integration
 
-Spacedeck provides zero-friction physical integration vectors for the most dominant agentic frameworks in the economy.
-
-### 1. Zerebro Harness (Python)
-Drop-in integration for Zerebro agent loops.
-
+### 1. Spacedeck SDK (Python)
 ```bash
-pip install spacedeck-zerebro-harness
+pip install spacedeck-sdk
 ```
 ```python
-import os, asyncio
-from spacedeck_zerebro import ZerebroHarness
+from spacedeck_sdk import SpacedeckClient, SVMConstraints
 
-async def main():
-    harness = ZerebroHarness(api_key=os.environ.get("SPACEDECK_API_KEY", ""))
-    receipt = await harness.strike("Liquidate 50k USDC for SOL on Jupiter")
-    print(f"Strike settled via {receipt.get('solver_id')}")
+# Initialize the Pilot Terminal
+client = SpacedeckClient(api_key="sk_spacedeck_...")
 
-asyncio.run(main())
+# Configure for Jito-enhanced execution
+constraints = SVMConstraints(
+    max_compute_units=1200000,
+    jito_bundle_tip_lamports=50000
+)
+
+# Execute an Atomic Strike
+receipt = await client.strike(
+    "Liquidate 50k USDC for SOL on Raydium",
+    svm_constraints=constraints
+)
 ```
 
 ### 2. Eliza Plugin (TypeScript)
-Native Action registration for the Eliza framework.
-
 ```bash
 npm install @spacedeck/eliza-plugin
 ```
 ```typescript
 import { spacedeckPlugin } from "@spacedeck/eliza-plugin";
 
-// Automatically registers the 'EXECUTE_SPACEDECK_INTENT' action
 const agent = new ElizaAgent({
-  plugins: [spacedeckPlugin],
+  plugins: [spacedeckPlugin], // Native Solana Intent Support
 });
 ```
-
-### 3. Core Protocol SDK (Python / TypeScript)
-For custom orchestration and deterministic architecture.
-
-```bash
-npm install @spacedeck/sdk    # TypeScript
-pip install spacedeck-sdk     # Python
-```
-
-<details>
-<summary><b>View Python SDK Example</b></summary>
-
-```python
-import asyncio
-from spacedeck_sdk.client import SpacedeckClient
-from spacedeck_sdk.schemas import ExecutionRequest
-
-async def main():
-    client = SpacedeckClient(api_key="sk_spacedeck_...")
-    
-    # 1. Parse the abstract intent into a GoldenPayload
-    payload = await client.parse_intent("Liquidate 50k USDC for SOL on Jupiter", "agent_wallet_1")
-    
-    # 2. Package the execution request (EIP-712 Auth)
-    request = ExecutionRequest(
-        payload=payload,
-        signature="0x_EIP712_DUMMY_SIGNATURE_SKIPPED_IN_SHADOW",
-        deadline=9999999999
-    )
-    
-    # 3. Initiate an Autonomous Transaction Settlement
-    strike_receipt = await client.execute_strike(request)
-    print(f"Strike Finalized. Solver: {strike_receipt.get('solver_id')}") 
-
-asyncio.run(main())
-```
-</details>
-
-### For Engineering Teams
-1.  **Clone** this interface repository to access the smart contracts and infrastructure shards.
-2.  **Configure** your institutional budget via the [Dual-EIP Handshake](./docs/pages/security/eip2612.md).
-3.  **Initiate** your first **Autonomous Transaction Settlement** via the Prism API.
-
-### For Autonomous Agents
-Spacedeck is optimized for **Zero-Shot Ingestion**.
-- Parse the **[llms.txt](./llms.txt)** for a total architectural overview.
-- Adopt the **[llms-full.txt](./llms-full.txt)** for deep context absorption.
-- Adopt the **[.cursorrules](./.cursorrules)** for deterministic development alignment.
 
 ---
 
 ## ⚖️ License
-The Spacedeck Interface Shard is released under the **Sovereign Open Source License**. See [LICENSE](./LICENSE) for details.
+The Spacedeck Protocol is released under the **Sovereign Open Source License**.
