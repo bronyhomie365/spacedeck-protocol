@@ -6,10 +6,10 @@ from pathlib import Path
 
 # Add core to path for local execution
 sys.path.append(str(Path(__file__).parent.parent))
-from main import TetryonicPayload, ExecutionRequest
+from main import CanonicalIntentSchema, ExecutionRequest
 
-def test_payload_valid_tetryon():
-    """[TETRYONICS]: Validating a perfect geometric intent."""
+def test_payload_valid_intent():
+    """Deterministic validation of a standard settlement intent."""
     data = {
         "intent_id": "STRIKE_001",
         "source_asset": "USDC",
@@ -18,25 +18,25 @@ def test_payload_valid_tetryon():
         "wallet_id": "0x1234567890abcdef1234567890abcdef12345678",
         "vector_type": "DARK_POOL"
     }
-    payload = TetryonicPayload(**data)
+    payload = CanonicalIntentSchema(**data)
     assert payload.intent_id == "STRIKE_001"
     assert payload.amount_usd == 1000.50
 
 def test_payload_invalid_amount():
-    """[THERMODYNAMICS]: Rejecting non-physical (string) mass."""
+    """Ensuring strict type validation for institutional capital volumes."""
     data = {
         "intent_id": "STRIKE_002",
         "source_asset": "USDC",
         "target_asset": "SOL",
-        "amount_usd": "TOO_MUCH", # Invalid type
+        "amount_usd": "INVALID_VOLUME", # Invalid type
         "wallet_id": "0x123",
         "vector_type": "PURE_YIELD"
     }
     with pytest.raises(ValidationError):
-        TetryonicPayload(**data)
+        CanonicalIntentSchema(**data)
 
 def test_execution_request_nesting():
-    """[KINEMATICS]: Validating the transition payload nesting."""
+    """Validating the integrity of the SVM execution request hierarchy."""
     payload_data = {
         "intent_id": "STRIKE_003",
         "source_asset": "USDC",

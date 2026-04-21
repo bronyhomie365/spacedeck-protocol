@@ -5,7 +5,7 @@ from eth_account.messages import encode_typed_data
 
 def generate_eip2612_signature(private_key, owner, spender, value, deadline, chain_id=11155111, verifying_contract="0x1c7D4B196Cb0271b3d4985018F8f6dfE6476b32b"):
     """
-    [TETRYONICS]: Physical Cryptographic Signature Generation for SEPOLIA USDC.
+    Institutional Cryptographic Signature Generation for Budget Delegation.
     """
     domain = {
         "name": "USD Coin",
@@ -57,16 +57,16 @@ if __name__ == "__main__":
     TEST_PRIVATE_KEY = "0x" + "a" * 64 
     acct = Account.from_key(TEST_PRIVATE_KEY)
     
-    # 2.4 Million USDC Strike
+    # Execution Volume Example
     value = 2400000 * 10**6 
     deadline = int(time.time() + 3600)
-    spender = "0x8c249E3817fF9B4D82812231d5533A753Ba43604" # Spacedeck Clearinghouse
+    spender = "0x8c249E3817fF9B4D82812231d5533A753Ba43604" # Spacedeck Settlement Hub
     
     sig = generate_eip2612_signature(TEST_PRIVATE_KEY, acct.address, spender, value, deadline)
     
-    print("\n--- [SPACEDECK OMEGA SIGNATURE GENERATOR] ---")
+    print("\n--- [SPACEDECK PROTOCOL SIGNATURE GENERATOR] ---")
     print(f"OWNER:   {acct.address}")
     print(f"SPENDER: {spender}")
     print(f"VALUE:   {value}")
     print(f"SIG:     {sig}")
-    print("---------------------------------------------\n")
+    print("------------------------------------------------\n")

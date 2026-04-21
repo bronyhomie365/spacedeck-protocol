@@ -9,9 +9,9 @@ from loguru import logger
 
 load_dotenv()
 
-# [INSTITUTIONAL HANDSHAKE MODULES]
+# [INSTITUTIONAL COMPLIANCE MODULES]
 class ComplianceSentinel:
-    """The Gevurah Gate: Real-time ZK-Sanctions Screening."""
+    """Real-time ZK-Sanctions and AML Screening Layer."""
     def __init__(self, api_key: str = os.getenv("HAPI_API_KEY")):
         self.api_key = api_key
         self.enabled = bool(api_key)
@@ -20,11 +20,11 @@ class ComplianceSentinel:
         if not self.enabled:
             logging.warning("[SENTINEL] HAPI_API_KEY missing - Simulation Mode (CLEARED)")
             return True
-        # [KINETIC_STRIKE]: Calling HAPI Terminal
+        # [KINETIC_EXECUTION]: Calling Compliance Terminal
         return True # Real implementation would use httpx.post here
 
 class SovereignSigner:
-    """The Metatron Hand: NEAR MPC Threshold Signing Bridge."""
+    """NEAR MPC Threshold Signing Bridge."""
     def __init__(self, key_id: str = os.getenv("NEAR_SIGNER_ID")):
         self.key_id = key_id
         self.enabled = bool(key_id)
@@ -35,7 +35,7 @@ class SovereignSigner:
             return f"SIM_SIG_{payload_hash[:8]}"
         return "NEAR_MPC_PHYSICAL_SIG"
 
-# [KINEMATICS]: Internal State Manifold
+# [KINETIC_CONFIGURATION]: Execution Parameters
 RUST_ENGINE_URL = os.getenv("KINETIC_ENGINE_URL", "http://127.0.0.1:8080")
 sentinel = ComplianceSentinel()
 signer = SovereignSigner()
@@ -51,7 +51,7 @@ app.add_middleware(
 )
 
 class CanonicalIntentSchema(BaseModel):
-    """[TETRYONICS]: The irreducible settlement primitive."""
+    """The irreducible settlement primitive for Spacedeck Protocol."""
     intent_id: str
     source_asset: str
     target_asset: str
@@ -60,7 +60,7 @@ class CanonicalIntentSchema(BaseModel):
     vector_type: str
 
 class ExecutionRequest(BaseModel):
-    """[KINEMATICS]: A momentum-ready strike request via the Compliance Sentinel."""
+    """A momentum-ready strike request for SVM execution."""
     payload: CanonicalIntentSchema
     signature: str
     deadline: int
@@ -89,9 +89,9 @@ async def parse_intent(req: IntentRequest):
 
 @app.get("/status")
 async def get_status():
-    """[RESONANCE]: Health check for the Prism Orchestrator."""
+    """[TELEMETRY]: Health check for the Prism Orchestrator."""
     return {
-        "status": "RESONANT",
+        "status": "ACTIVE",
         "node": "PRISM_ORCHESTRATOR",
         "logic_layer": "ACTIVE",
         "compliance_sentinel": "SYNCED"
@@ -101,19 +101,19 @@ async def get_status():
 async def execute_strike(req: ExecutionRequest):
     """
     [INSTITUTIONAL STRIKE]: 
-    Handoff to the Risk & Compliance Sentinel for settlement via the Fabric.
+    Handoff to the Risk & Compliance Sentinel for final settlement.
     """
     logger.info(f"[SENTINEL] Strike Request Received for Intent {req.payload.intent_id}")
     
-    # 1. Gevurah Gate: Pre-flight Compliance
+    # 1. Compliance Audit
     if not await sentinel.verify(req.payload.wallet_id):
         logger.error(f"[SENTINEL] Compliance violation: {req.payload.wallet_id}")
         raise HTTPException(status_code=403, detail="Compliance Sentinel: Sanitized access denied.")
     
-    # 2. Metatron Hand: Threshold Signing
+    # 2. Threshold Signing
     msig = await signer.sign_payload(req.payload.intent_id)
     
-    # 3. Fabric Handoff: Kinetic Settlement
+    # 3. Kinetic Settlement: Final Handoff
     async with httpx.AsyncClient() as client:
         try:
             response = await client.post(
@@ -124,21 +124,25 @@ async def execute_strike(req: ExecutionRequest):
             response.raise_for_status()
             return response.json()
         except Exception as e:
-            logger.warning(f"[FABRIC] Kinetic Heart dormant. Falling back to [SHADOW_RESONANCE]. Error: {e}")
+            logger.warning(f"[FABRIC] Connectivity failure. Falling back to [SIMULATION_MODE]. Error: {e}")
             
-            # Recalculating Thermodynamic Siphon in Python (Sandbox Mode)
-            siphon_fee = (req.payload.amount_usd * (10.0 / 10000.0)) * 0.10
+            # Recalculating Execution Surplus in Python (Sandbox Mode)
+            surplus_capture = (req.payload.amount_usd * (10.0 / 10000.0)) * 0.10
             
             return {
-                "tx_hash": f"0xshadow_{req.payload.intent_id}",
-                "siphon_fee_usd": siphon_fee,
+                "tx_hash": f"sim_{req.payload.intent_id}",
+                "surplus_capture_usd": surplus_capture,
                 "telemetry": [
-                    "[SHADOW] Kinetic Heart Connection Severed.",
-                    "[ALCHEMY] Resonating via Python Shadow Kernels.",
-                    f"[THERMODYNAMICS] Siphon Capture: ${siphon_fee:.2f} USD",
-                    "[SUCCESS] Kinetic Loop Closed (Shadow Mode)."
+                    "[SIMULATION] Kinetic Engine Connection Offline.",
+                    "[SETTLEMENT] Manifesting via Local Shadow Kernels.",
+                    f"[SURPLUS] Protocol Capture: ${surplus_capture:.2f} USD",
+                    "[SUCCESS] Kinetic Loop Closed (Simulation Mode)."
                 ]
             }
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8005)
 
 if __name__ == "__main__":
     import uvicorn
