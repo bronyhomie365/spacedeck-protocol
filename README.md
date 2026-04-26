@@ -48,20 +48,13 @@ Spacedeck sits at the critical Layer 4 of the autonomous economy, serving as the
 
 ---
 
-## ⚡ The Kinetic Lifecycle (End-to-End)
+## ⚡ The Institutional Execution Pipeline
 
-Exhaustive, deterministic settlement in 8 sub-atomic steps:
+Zero-custody clearing for algorithmic agents. Decoupling intelligence from execution with 400ms atomic finality. Legacy DeFi settles through bloated, multi-step friction; SpaceDeck compresses execution into three deterministic laws of motion:
 
-1.  **Keyless connection** (Near MPC)
-2.  **ZK-sanitized intent** (Arcium Privacy)
-3.  **Deterministic parsing** (Prism LLM)
-4.  **PDA delegation** (Solana Authority)
-5.  **Solver auction** (Price Discovery)
-6.  **Jito-bundle strike** (MEV Protection)
-7.  **Atomic settlement** (400ms SVM)
-8.  **Waterfall telemetry** (Real-time Audit)
-
----
+1. **Order Ingress [NEAR MPC]:** Off-chain cryptographic intent authentication. The AI Agent broadcasts a strictly typed JSON intent via a keyless connection. Zero translation drag. Pure programmatic input without exposing private keys to the local runtime.
+2. **Clearing Enclave [Arcium Dark Pool]:** Isolated PDA delegation. Bonded solvers compete to route the intent inside a parallelized, encrypted state, guaranteeing absolute MEV shielding. Zero state risk. The principal never leaves the user's vault until the optimal route is locked.
+3. **Atomic Settlement [Jito Block Engine]:** The execution route and Pyth oracle slippage verification are mathematically sealed in a private bundle. 400ms finality. The strike either settles perfectly, bypassing the public mempool, or reverts completely with zero capital lost.
 
 ## 🏗️ The Manifest (Solana Shards)
 

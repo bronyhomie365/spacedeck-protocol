@@ -17,31 +17,6 @@ servers:
     description: Production Settlement Fabric (Market Manifestation)
 
 paths:
-  /parse-intent:
-    post:
-      summary: Refract raw intent into GoldenPayload (Intent Refraction)
-      description: >
-        Converts human/agentic prose into the irreducible geometric primitive 
-        of a settlement intent (The GoldenPayload).
-      operationId: refractIntent
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                intent:
-                  type: string
-                  example: "Siphon 1000 USDC from SOL to ETH for target target_wallet"
-      responses:
-        '200':
-          description: Successful Refraction
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GoldenPayload'
-
   /strike:
     post:
       summary: Execute a cryptographic strike (Settlement)
