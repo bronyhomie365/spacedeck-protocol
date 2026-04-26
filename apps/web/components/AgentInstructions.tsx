@@ -123,12 +123,12 @@ export const AgentInstructions = ({ active }: { active: boolean }) => {
         {[
           { val: "ZERO", label: "Private Key Exposure" },
           { val: "65+", label: "Institutional Solvers" },
-          { val: "12s", label: "Avg. Settlement Time" }
+          { val: "400ms", label: "Atomic Settlement" }
         ].map((stat, i) => (
           <div key={i} className="sis-panel p-7 flex flex-col items-center justify-center text-center">
             <div className="sis-stat-value mb-2">
-              {stat.val === "12s" ? (
-                <>12<span style={{ fontSize: '70%', opacity: 0.8 }}>s</span></>
+              {stat.val === "400ms" ? (
+                <>400<span style={{ fontSize: '70%', opacity: 0.8 }}>ms</span></>
               ) : stat.val}
             </div>
             <div className="text-[10px] text-[#b7c8ff]/50 font-questrial tracking-[0.05em] font-medium uppercase">{stat.label}</div>
@@ -166,38 +166,36 @@ export const AgentInstructions = ({ active }: { active: boolean }) => {
           <TerminalBlock code={`export SPACEDECK_API_BASE="https://api.spacedeck.xyz/api/v1"\nexport SPACEDECK_AGENT_KEY="${keyState === 'live' ? 'sk_live_' + address?.slice(0,8) + '...' : 'sk_test_SANDBOX_TOKEN'}"`} />
         </ShardStep>
 
-        <ShardStep step="Step 3" title="Install the harness">
+        <ShardStep step="Step 3" title="Connect the Adapter">
           <div className="flex gap-6 border-b border-[#b7c8ff]/10 mb-6">
-            {['eliza', 'zerebro', 'rig', 'rest'].map((tab) => (
+            {['mcp', 'rest'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
                 className={`pb-3 text-[13px] font-questrial transition-all relative tracking-[0.05em] ${activeTab === tab ? 'text-[#b7c8ff] font-bold' : 'text-[#b7c8ff]/40 hover:text-[#b7c8ff]/80'}`}
               >
-                {tab === 'rest' ? 'Custom / REST' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'mcp' ? 'Universal MCP Server' : 'Custom / REST API'}
                 {activeTab === tab && <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#b7c8ff]" />}
               </button>
             ))}
           </div>
           <p className="sis-body text-[14px]">
             {activeTab === 'rest' 
-              ? "Integrate directly using our OpenAPI endpoints from any language."
-              : `Install the Spacedeck harness in ${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} so your assistant can command capital with zero friction.`
+              ? "Integrate directly using our deterministic strike endpoints from any language."
+              : "Boot the Spacedeck MCP Server to give any AI assistant (Claude, GPT, etc.) native, keyless control over institutional liquidity."
             }
           </p>
           <TerminalBlock 
             code={
-              activeTab === 'eliza' ? `npm install @spacedeck-protocol/eliza-plugin` :
-              activeTab === 'zerebro' ? `npm install @spacedeck-protocol/zerebro-harness` :
-              activeTab === 'rig' ? `cargo add spacedeck-rig-sdk` :
-              `curl -X POST $SPACEDECK_API_BASE/parse_intent \\\n  -H "Authorization: Bearer $SPACEDECK_AGENT_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d '{"raw_prompt": "Provide 1000 USDC to Kamino", "wallet_id": "0x..."}'`
+              activeTab === 'mcp' ? `npx @spacedeck/mcp-server start --port 8080 --key $SPACEDECK_AGENT_KEY` :
+              `curl -X POST $SPACEDECK_API_BASE/strike \\\n  -H "Authorization: Bearer $SPACEDECK_AGENT_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d '{"intent_id": "alpha_1", "action": "SWAP", "amount": 50000}'`
             } 
           />
         </ShardStep>
 
         <ShardStep step="Step 4" title="Verify the connection">
           <p className="sis-body text-[14px]">
-            Run a quick resonance check to ensure the Prism Logic Layer and Risk & Compliance Sentinel are synchronized.
+            Run a quick resonance check to ensure the Near MPC Relayer and Arcium Enclave are synchronized.
           </p>
           <TerminalBlock code={`curl "$SPACEDECK_API_BASE/status" \\\n  -H "Authorization: Bearer $SPACEDECK_AGENT_KEY"`} />
         </ShardStep>
@@ -209,10 +207,15 @@ export const AgentInstructions = ({ active }: { active: boolean }) => {
         
         <div className="sis-panel p-7 bg-[#b7c8ff]/[0.02] shadow-[inset_0_2px_15px_rgba(0,0,0,0.5)] overflow-hidden">
           <div className="font-mono text-[13px] text-[#cdd8ff]/90 whitespace-pre">
-            <span className="text-[#b7c8ff]">const</span> intent = <span className="text-white/80">"I want to move 100k USDC into a delta-neutral SOL/USDC yield position on Kamino with absolute MEV protection."</span>;<br/><br/>
-            <span className="text-[#b7c8ff]/40">// The harness automatically handles parsing, auction, and execution</span><br/>
-            <span className="text-[#b7c8ff]">const</span> receipt = <span className="text-[#b7c8ff]">await</span> spacedeck.<span className="text-blue-300">execute</span>(intent);<br/><br/>
-            console.<span className="text-blue-300">log</span>(<span className="text-white/80">{"`Settled via ${receipt.solver_id} at ${receipt.protocol_yield_bps / 100}% APY`"}</span>);
+            <span className="text-[#b7c8ff]">const</span> intent = &#123;<br/>
+            &nbsp;&nbsp;intent_id: <span className="text-white/80">"strike_77"</span>,<br/>
+            &nbsp;&nbsp;action: <span className="text-white/80">"SWAP"</span>,<br/>
+            &nbsp;&nbsp;amount: <span className="text-white/80">50000</span>,<br/>
+            &nbsp;&nbsp;slippage: <span className="text-white/80">10</span><br/>
+            &#125;;<br/><br/>
+            <span className="text-[#b7c8ff]/40">// The adapter handles Near MPC, Arcium Auction, and Jito Strike</span><br/>
+            <span className="text-[#b7c8ff]">const</span> receipt = <span className="text-[#b7c8ff]">await</span> spacedeck.<span className="text-blue-300">strike</span>(intent);<br/><br/>
+            console.<span className="text-blue-300">log</span>(<span className="text-white/80">{"`Settled via ${receipt.solver_id} in 400ms`"}</span>);
           </div>
         </div>
 

@@ -1,7 +1,25 @@
-﻿node_modules/
+node_modules/
 _SHARD/
 .env
 .next/
 dist/
 .DS_Store
 *.log
+
+# [INSTITUTIONAL SANITATION]
+# Internal Knowledge & Metadata
+docs/
+engineering realignment/
+llms.txt
+llms-full.txt
+NODE_IDENTITY.md
+
+# Legacy & Sandbox Assets
+CoW-example/
+_SHADOW/
+.cursorrules
+
+# Environment & Secrets
+.env.local
+.env.production
+.env.development

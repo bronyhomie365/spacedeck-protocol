@@ -37,42 +37,35 @@ const SCRIPTS: Record<string, ScriptLine[]> = {
     { prefix: "  ✗", prefixColor: ERR, text: "TOTAL EXPOSURE: $3.2M — CRITICAL", color: ERR, delay: 700 },
   ],
   "02": [
-    { prefix: "AGENT", prefixColor: ACCENT, text: '"Rebalance DAO treasury: move $2.4M', typing: true, delay: 700 },
-    { prefix: "      ", prefixColor: ACCENT, text: ' across Kamino, Drift, and Marinade"', typing: true, delay: 400 },
-    { text: "", delay: 600 },
-    { prefix: "PRISM", prefixColor: OK, text: "Decomposing multi-protocol intent...", delay: 900 },
-    { prefix: "PRISM", prefixColor: OK, text: "Normalized payload:", delay: 700 },
-    { text: '  { "source": "DAO_TREASURY",', color: `${ACCENT}CC`, delay: 300 },
-    { text: '    "total_usd": 2400000,', color: `${ACCENT}CC`, delay: 250 },
-    { text: '    "targets": [', color: `${ACCENT}CC`, delay: 250 },
-    { text: '      { "KAMINO": 40%, "DRIFT": 35%,', color: `${ACCENT}CC`, delay: 250 },
-    { text: '        "MARINADE": 25% }],', color: `${ACCENT}CC`, delay: 250 },
-    { text: '    "shard_count": 6,', color: `${ACCENT}CC`, delay: 250 },
-    { text: '    "shield": true }', color: `${ACCENT}CC`, delay: 250 },
+    { prefix: "INGRESS", prefixColor: OK, text: "Deterministic JSON intent received", delay: 700 },
+    { prefix: "AUTH", prefixColor: OK, text: "Requesting Near MPC signature...", delay: 600 },
+    { prefix: "AUTH", prefixColor: OK, text: "Mode: Keyless Threshold Auth", delay: 500 },
+    { prefix: "  ✓", prefixColor: OK, text: "Signature Secured: ed25519:5H9b...", color: OK, delay: 900 },
     { text: "", delay: 500 },
-    { prefix: "  ✓", prefixColor: OK, text: "GoldenPayload locked — 6 shards queued", color: OK, delay: 700 },
+    { prefix: "SOCKET", prefixColor: OK, text: "Validating Institutional Schema:", delay: 800 },
+    { text: '  { "action": "SWAP", "amount": 10M,', color: `${ACCENT}CC`, delay: 300 },
+    { text: '    "slippage": 10bps, "pda": true }', color: `${ACCENT}CC`, delay: 250 },
+    { text: "", delay: 500 },
+    { prefix: "  ✓", prefixColor: OK, text: "Telemetry Finalized (0.02s)", color: OK, delay: 700 },
   ],
   "03": [
-    { prefix: "PERMIT", prefixColor: ACCENT, text: "EIP-2612 budget signature requested", delay: 800 },
-    { prefix: "PERMIT", prefixColor: ACCENT, text: "Amount: $1,000,000 USDC", delay: 600 },
-    { prefix: "PERMIT", prefixColor: ACCENT, text: "Window: 7 days", delay: 500 },
-    { prefix: "  ✓", prefixColor: OK, text: "Signed (gasless)", color: OK, delay: 1000 },
+    { prefix: "VACUUM", prefixColor: WARN, text: "Sealing Clearing Enclave (Arcium)", delay: 800 },
+    { prefix: "VACUUM", prefixColor: WARN, text: "Broadcasting to 65 bonded solvers...", delay: 600 },
+    { prefix: "  BID", prefixColor: `${ACCENT}80`, text: "Solver_17 → 0.02% slippage", delay: 500 },
+    { prefix: "  BID", prefixColor: `${ACCENT}80`, text: "Solver_42 → 0.01% slippage", delay: 400 },
+    { prefix: "  ★", prefixColor: OK, text: "WINNER: Solver_42", color: OK, delay: 900 },
     { text: "", delay: 600 },
-    { prefix: "ZK-GATE", prefixColor: WARN, text: "Compliance scan initiated...", delay: 900 },
-    { prefix: "ZK-GATE", prefixColor: WARN, text: "Wallet 0x8a2f... → Risk: 3/100", delay: 800 },
-    { prefix: "  ✓", prefixColor: OK, text: "CLEARED — forwarded to solver network", color: OK, delay: 900 },
+    { prefix: "DELEGATE", prefixColor: ACCENT, text: "PDA authority granted to Enclave", delay: 900 },
+    { prefix: "  ✓", prefixColor: OK, text: "Vacuum Auction Locked (0.05s)", color: OK, delay: 800 },
   ],
   "04": [
-    { prefix: "AUCTION", prefixColor: ACCENT, text: "Broadcasting to 65 bonded solvers...", delay: 900 },
-    { prefix: "  BID", prefixColor: `${ACCENT}80`, text: "Solver_17 → 0.02% slippage", delay: 800 },
-    { prefix: "  BID", prefixColor: `${ACCENT}80`, text: "Solver_42 → 0.01% slippage", delay: 600 },
-    { prefix: "  ★", prefixColor: OK, text: "WINNER: Solver_42", color: OK, delay: 900 },
+    { prefix: "STRIKE", prefixColor: OK, text: "Compiling Jito Atomic Bundle...", delay: 900 },
+    { prefix: "STRIKE", prefixColor: OK, text: "Injecting Pyth Oracle check...", delay: 800 },
+    { prefix: "STRIKE", prefixColor: OK, text: "Bypassing public mempool...", delay: 600 },
     { text: "", delay: 500 },
-    { prefix: "SETTLE", prefixColor: ACCENT, text: "NEAR MPC threshold signing...", delay: 1000 },
-    { prefix: "SETTLE", prefixColor: ACCENT, text: "Arcium MXE cloak: ACTIVE", delay: 600 },
-    { prefix: "SETTLE", prefixColor: ACCENT, text: "Chain: SOLANA", delay: 500 },
-    { prefix: "  ✓", prefixColor: OK, text: "SETTLED in 11.4s", color: OK, delay: 900 },
-    { prefix: "  TX", prefixColor: `${OK}80`, text: "4Kp9...mXn2", color: `${OK}60`, delay: 500 },
+    { prefix: "JITO", prefixColor: OK, text: "Submitting to Block Engine (ams)", delay: 700 },
+    { prefix: "  ✓", prefixColor: OK, text: "SETTLED in 400ms (1 Block)", color: OK, delay: 1000 },
+    { prefix: "  TX", prefixColor: `${OK}80`, text: "5Kp9...mXn2", color: `${OK}60`, delay: 500 },
   ],
 };
 
@@ -400,7 +393,7 @@ export const ScienceManifestSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-20 max-w-[900px] mx-auto">
           <StatCard value="ZERO" label="Private Key Exposure" />
           <StatCard value="10" label="BPS Protocol Fee" />
-          <StatCard value="12s" label="Avg. Settlement Time" />
+          <StatCard value="400ms" label="Atomic Settlement" />
         </div>
 
         {/* ═══ SECTIONS ═══ */}
@@ -424,17 +417,17 @@ export const ScienceManifestSection: React.FC = () => {
           <SectionBlock
             id="manifest-prism"
             number="02"
-            title="Intent, not transactions"
+            title="Deterministic Intent"
             icon={Cpu}
             videoSrc="/cymatics/cymatic-02.mp4"
             reverse
             stats={[
-              { label: "Input", value: "Natural language or structured intent via REST API." },
-              { label: "Output", value: "Deterministic GoldenPayload — ready for settlement." }
+              { label: "Input", value: "Strict JSON payload via MCP or REST API." },
+              { label: "Auth", value: "Keyless Near MPC threshold signature." }
             ]}
           >
             <p className="sis-body text-[14px]">
-              Your agent speaks. Spacedeck executes. The Prism Logic Layer converts natural language into a deterministic execution payload — a standardized Canonical Intent Schema with asset, amount, protocol target, and risk parameters locked. No transaction construction. No gas estimation. No chain-specific logic. One API call replaces thousands of lines of brittle integration code.
+              Eradicate probabilistic failure. Spacedeck converts institutional intent into a deterministic execution vector. By using Near MPC for keyless authentication, your agent signs transaction intents off-chain without ever touching the vault's private keys. The Spacedeck Socket validates the schema, verifies the signature, and triggers the Anchor PDA in under 50ms.
             </p>
           </SectionBlock>
 
@@ -457,18 +450,18 @@ export const ScienceManifestSection: React.FC = () => {
           <SectionBlock
             id="manifest-settlement"
             number="04"
-            title="Dark pool settlement"
+            title="Atomic Settlement"
             icon={Globe}
             videoSrc="/cymatics/cymatic-01.mp4"
             reverse
             stats={[
-              { label: "Fee", value: "10 BPS from solver spread. Zero cost to the agent." },
-              { label: "Finality", value: "12-second average cross-chain settlement." },
-              { label: "Chains", value: "Solana · Ethereum · Base" }
+              { label: "Fee", value: "10 BPS surplus capture. Zero gas markup." },
+              { label: "Finality", value: "400ms (Single-block strike via Jito)." },
+              { label: "Security", value: "Zero-revert execution logic." }
             ]}
           >
             <p className="sis-body text-[14px]">
-              Approved intents enter the Liquidity Settlement Fabric. Bonded institutional solvers bid to fill your order at the best possible price — shielded from public mempool extraction. Settlement is executed via NEAR MPC threshold signatures and Arcium confidential compute. Your capital moves across chains without ever being visible to front-runners.
+              Approved intents hit the Jito Block Engine for absolute finality. Spacedeck bypasses the public Solana mempool entirely, wrapping the execution, Pyth oracle price-check, and PDA authorization into a sealed bundle. This guarantees 400ms atomic settlement with 100% MEV protection. If the market violates your slippage bounds, the transaction reverts before a single cent is moved.
             </p>
           </SectionBlock>
         </div>

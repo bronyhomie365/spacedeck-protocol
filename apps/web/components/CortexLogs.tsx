@@ -16,24 +16,24 @@ export const CortexLogs = () => {
     if (log.includes("[ERROR]") || log.includes("[FATAL]")) {
       return { color: "#ff6b6b", textShadow: "0 0 6px rgba(255,107,107,0.3)" };
     }
-    if (log.includes("[ARCIUM MXE]")) {
+    if (log.includes("[VACUUM]")) {
       return { color: "#b7c8ff", textShadow: "0 0 6px rgba(183,200,255,0.3)" };
     }
-    if (log.includes("[NEAR MPC]")) {
+    if (log.includes("[TELEMETRY]")) {
       return { color: "#fbbf24", textShadow: "0 0 6px rgba(251,191,36,0.3)" };
+    }
+    if (log.includes("[STRIKE]")) {
+      return { color: "#4fd1c5", textShadow: "0 0 6px rgba(79,209,197,0.3)", fontWeight: "bold" };
     }
     if (log.includes("[SUCCESS]")) {
       return { color: "#4fd1c5", textShadow: "0 0 6px rgba(79,209,197,0.3)", fontWeight: "bold" };
-    }
-    if (log.includes("[SIPHON]")) {
-      return { color: "#ff6b6b", textShadow: "0 0 6px rgba(255,107,107,0.3)" };
     }
     return { color: "rgba(183, 200, 255, 0.6)", textShadow: "0 0 6px rgba(183, 200, 255, 0.18)" };
   };
 
   const getLogIcon = (log: string) => {
-    if (log.includes("[ARCIUM MXE]")) return <ShieldAlert className="w-3.5 h-3.5 inline mr-2 text-[#b7c8ff]" style={{ filter: "drop-shadow(0 0 4px rgba(183,200,255,0.3))" }} />;
-    if (log.includes("[SUCCESS]")) return <Zap className="w-3.5 h-3.5 inline mr-2 text-[#4fd1c5]" style={{ filter: "drop-shadow(0 0 4px rgba(79,209,197,0.3))" }} />;
+    if (log.includes("[VACUUM]")) return <ShieldAlert className="w-3.5 h-3.5 inline mr-2 text-[#b7c8ff]" style={{ filter: "drop-shadow(0 0 4px rgba(183,200,255,0.3))" }} />;
+    if (log.includes("[STRIKE]") || log.includes("[SUCCESS]")) return <Zap className="w-3.5 h-3.5 inline mr-2 text-[#4fd1c5]" style={{ filter: "drop-shadow(0 0 4px rgba(79,209,197,0.3))" }} />;
     return <TerminalSquare className="w-3.5 h-3.5 inline mr-2" style={{ color: "rgba(183, 200, 255, 0.4)" }} />;
   };
 
