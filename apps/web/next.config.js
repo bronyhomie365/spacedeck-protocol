@@ -1,23 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // [ONTOLOGICAL PURGE]: Stochastic build bypass eradicated.
+  // Strict type-safety invariants mathematically enforced for deployment.
   typescript: {
-    // !! WARN !! Maintaining current resilience for production migration
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          { key: 'X-Frame-Options', value: 'DENY' },
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-        ],
-      },
-    ];
-  },
+  eslint: {
+    ignoreDuringBuilds: false,
+  }
 };
 
 module.exports = nextConfig;

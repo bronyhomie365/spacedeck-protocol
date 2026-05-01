@@ -49,17 +49,17 @@ const SHARD_CONTENT: Record<string, any> = {
     description: "Collapse chaotic natural language intent into deterministic institutional execution vectors.",
     steps: [
       { title: "INTENT INTAKE", description: "Abstract NLP request received from Agent framework (Eliza/Zerebro).", details: ["NLP_PARSE", "ASYNC_FIRE", "SDK_NATIVE"] },
-      { title: "PRISM COLLAPSE", description: "ZK-Compliance screening and Binah parsing into a GoldenPayload JSON.", details: ["ZK_PASS", "EIP-2612_VERIFY", "GOLDEN_PAYLOAD"] },
+      { title: "PRISM COLLAPSE", description: "ZK-Compliance screening and Binah parsing into a GoldenPayload JSON.", details: ["ZK_PASS", "NEAR_MPC_VERIFY", "GOLDEN_PAYLOAD"] },
       { title: "SOLVER AUCTION", description: "65+ Bonded Solvers bid to fulfill orderflow in 50ms windows.", details: ["RFQ_ENGINE", "SIPHON_CAPTURE", "MEV_SHIELD"] },
       { title: "DARK SETTLEMENT", description: "Winning bid settled via NEAR MPC Chain Signatures darkly.", details: ["KEYLESS_MPC", "JITO_STEALTH", "ATOMIC_SETTLE"] }
     ]
   },
   'permits': {
-    title: "EIP-2612 // THE NUCLEAR SHIELD",
+    title: "PDA DELEGATION // THE NUCLEAR SHIELD",
     description: "Decouple Budget Authorization from Execution Signing. Your keys never leave your control.",
     steps: [
-      { title: "BUDGET PERMIT", description: "User signs a gasless EIP-2612 Permit to authorize a specific USDC budget.", details: ["GASLESS_SIGN", "OFF_CHAIN_APPROVE"] },
-      { title: "SPENDER LOCK", description: "Spacedeck Clearinghouse is authorized as the only valid spender.", details: ["PROTOCOL_GUARD", "NONCE_VERIFY"] },
+      { title: "BUDGET DELEGATION", description: "User initializes a programmatic SVM PDA to authorize a specific USDC budget.", details: ["PROGRAMMATIC_AUTH", "OFF_CHAIN_APPROVE"] },
+      { title: "SPENDER LOCK", description: "Spacedeck Clearinghouse is authorized as the only valid spender via PDA.", details: ["PROTOCOL_GUARD", "NONCE_VERIFY"] },
       { title: "DELEGATED EXEC", description: "Agent uses authorized budget via API keys without private key exposure.", details: ["BUDGET_VS_KEY", "SCOPED_AUTH"] }
     ]
   },

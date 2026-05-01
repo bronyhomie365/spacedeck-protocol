@@ -189,7 +189,7 @@ export const ExecutionPortal = ({ active }: { active: boolean }) => {
            <div className="flex flex-col items-center gap-6 relative z-10">
               <div className="text-[#4fd1c5] font-mono text-[11px] font-bold tracking-[0.5em] uppercase">Broadcasting Strike...</div>
               <div className="flex items-center gap-12 w-full max-w-md justify-center">
-                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-black/40 text-[10px] font-bold italic">ETH</div>
+                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-black/40 text-[10px] font-bold italic">USDC</div>
                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#4fd1c5] to-transparent relative">
                     <motion.div 
                       animate={{ x: [-20, 240] }} 

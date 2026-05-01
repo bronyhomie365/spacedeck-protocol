@@ -9,7 +9,7 @@
     "dev": "tsc -w"
   },
   "dependencies": {
-    "@spacedeck/sdk": "workspace:*",
+    "@spacedeck/sdk": "*",
     "@elizaos/core": "latest"
   },
   "devDependencies": {

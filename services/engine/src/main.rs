@@ -5,6 +5,7 @@ use axum::{
 use spacedeck_engine::{ExecutionRequest, KineticResponse};
 use std::net::SocketAddr;
 mod kinetics;
+mod jito_client;
 use kinetics::KineticHeart;
 
 #[tokio::main]

@@ -1,9 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Copy, Server, Zap, Lock, Loader2, Network, Check, X } from 'lucide-react';
-import { useAccount } from 'wagmi';
-import { useConnectModal } from '@rainbow-me/rainbowkit';
+import { Server, Check } from 'lucide-react';
 import { useKineticStore } from '../store/useKineticStore';
 
 const TerminalBlock = ({ code }: { code: string }) => {
@@ -62,10 +60,6 @@ const ShardStep = ({ step, title, children }: any) => {
 };
 
 export const SolverPortal = ({ active }: { active: boolean }) => {
-  const [keyState, setKeyState] = useState<'locked' | 'live'>('locked');
-  const [isBonding, setIsBonding] = useState(false);
-  const { isConnected } = useAccount();
-  const { openConnectModal } = useConnectModal();
   const setSolverMode = useKineticStore((state) => state.setSolverMode);
 
   React.useEffect(() => {
@@ -78,12 +72,6 @@ export const SolverPortal = ({ active }: { active: boolean }) => {
 
   if (!active) return null;
 
-  const handleBond = async () => {
-    if (!isConnected) { openConnectModal?.(); return; }
-    setIsBonding(true);
-    setTimeout(() => { setIsBonding(false); setKeyState('live'); }, 2000);
-  };
-
   return (
     <motion.div 
       id="solver-portal-container"
@@ -95,31 +83,26 @@ export const SolverPortal = ({ active }: { active: boolean }) => {
     >
       {/* HEADER SECTION */}
       <div className="mb-11">
-        <div className="text-[#b7c8ff] font-microgramma tracking-[0.4em] text-[10px] mb-6 uppercase font-bold">
-          Spacedeck Protocol // Solver Network
+        <div className="text-[#b7c8ff] font-microgramma tracking-[0.4em] text-[10px] mb-6 uppercase font-bold flex items-center gap-2">
+          Spacedeck Protocol / Solver Network
         </div>
         <h1 className="sis-h1 mb-6">
-          MONETIZE LIQUIDITY. <br />CAPTURE THE SIPHON.
+          ZERO-CUSTODY EXECUTION. <br />EXCLUSIVE INSTITUTIONAL FLOW.
         </h1>
         <p className="sis-body mb-8 max-w-2xl">
-          Institutional orderflow is the lifeblood of the Agentic Economy. By joining the Spacedeck Solver Network, you gain direct access to shielded agent intents that require professional-grade execution.
+          Spacedeck is a zero-custody executing broker for algorithmic agents. We aggregate strictly typed, price-insensitive order flow and route it exclusively to a closed network of whitelisted solvers. Zero mempool leakage. Absolute MEV capture.
         </p>
-        
-        <div className="flex gap-4">
-          <button className="sis-cta-primary">Relayer Specs <span className="text-[12px]">↗</span></button>
-          <button className="sis-cta-secondary">Bonding Guide <span className="text-[12px]">↗</span></button>
-        </div>
       </div>
 
       {/* STATS SECTION */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-14">
         {[
-          { val: "10 BPS", label: "Fixed Protocol Siphon" },
-          { val: "22ms", label: "P99 Latency" },
-          { val: "1.00", label: "Fill Precision" }
+          { val: "0 BPS", label: "Genesis Fee (30 Days)" },
+          { val: "100%", label: "Alpha Retention" },
+          { val: "400ms", label: "Latency Invariant" }
         ].map((stat, i) => (
           <div key={i} className="sis-panel p-7 flex flex-col items-center justify-center text-center">
-            <div className="sis-stat-value mb-2">
+            <div className="sis-stat-value mb-2 text-[#cdd8ff]">
               {stat.val}
             </div>
             <div className="text-[10px] text-[#b7c8ff]/50 font-questrial tracking-[0.05em] font-medium uppercase">{stat.label}</div>
@@ -129,54 +112,53 @@ export const SolverPortal = ({ active }: { active: boolean }) => {
 
       {/* STEPS SECTION */}
       <div className="space-y-6">
-        <ShardStep step="Step 1" title="Deploy the relayer">
+        <ShardStep step="Phase 1" title="Genesis Partnership Program">
           <p className="sis-body text-[14px]">
-            Run the Spacedeck Docker image on your local hardware for zero-lag access to the intent firehose.
+            To foster our initial liquidity network, the standard protocol execution fee is suspended for the first 30 days of Mainnet. Early integration partners retain <strong>100% of the execution alpha</strong>. The Phase 3 confidential clearing bond ($50k USDC) is deferred for Genesis participants.
           </p>
-          <TerminalBlock code={`docker pull spacedeckprotocol/relayer-node:latest\ndocker run -d --net=host spacedeckprotocol/relayer-node`} />
         </ShardStep>
 
-        <ShardStep step="Step 2" title="Bond collateral">
+        <ShardStep step="Phase 2" title="Deterministic Ingress">
           <p className="sis-body text-[14px]">
-            Lock $50,000 USDC bond to guarantee execution certainty for agents. This prevents toxic flow and protects the AI's capital.
+            Solvers receive strictly typed, Near MPC-authenticated intents directly via our Universal Socket. To guarantee cryptographic execution certainty, all routing must be compiled exclusively through the <code>jito-solana</code> bundle architecture.
           </p>
-          <button 
-            onClick={handleBond} 
-            disabled={isBonding} 
-            className="mt-4 px-8 py-3 rounded-xl bg-[#b7c8ff]/10 border border-[#b7c8ff]/30 text-[#b7c8ff] hover:bg-[#b7c8ff]/20 transition-all font-microgramma text-[10px] tracking-widest uppercase font-bold flex items-center gap-2"
-          >
-            {isBonding ? <Loader2 size={14} className="animate-spin" /> : <Lock size={14} />}
-            {isBonding ? 'BONDING...' : keyState === 'live' ? 'BOND ACTIVE' : 'DEPOSIT $50k BOND'}
-          </button>
+          <TerminalBlock code={`// [BUNDLE COLLAPSE]: Structuring the Atomic Strike\npub async fn execute_kinetic_strike(intent: SpacedeckIntent) -> Result<String, String> {\n    // 1. Verify Near MPC Signature\n    verify_handshake(&intent.agent_authority, &intent.signature_ed25519)?;\n\n    // 2. Compile Transaction & Wrap in Jito Bundle\n    let mut tx = Transaction::new_with_payer(&optimized_ixs, Some(&solver_pubkey));\n    let bundle = Bundle::new(vec![tx]).with_tip(calculate_jito_tip(intent.max_slippage_bps));\n\n    // 3. Submit directly to Block Engine\n    block_engine_client.send_bundle(bundle).await\n}`} />
         </ShardStep>
 
-        <ShardStep step="Step 3" title="Connect your engine">
+        <ShardStep step="Phase 3" title="Atomic Settlement Invariant">
           <p className="sis-body text-[14px]">
-            Hook your proprietary pricing algorithm into the private WebSocket firehose to receive intent streams in real-time.
+            Institutional capital requires absolute finality. Solvers operate within a strict <strong>400ms</strong> compilation window. To protect our agents from toxic flow, all execution must bypass the public mempool. Intents failing to land within the window are automatically re-routed.
           </p>
-          <div className="flex gap-3">
-             <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/5 font-mono text-[10px] text-[#b7c8ff]/70 uppercase tracking-widest">WSS_STREAM</div>
-             <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/5 font-mono text-[10px] text-[#b7c8ff]/70 uppercase tracking-widest">50MS_WINDOW</div>
+          <div className="flex gap-3 mt-4">
+             <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/5 font-mono text-[10px] text-[#b7c8ff]/70 uppercase tracking-widest bg-[#b7c8ff]/5 border-[#b7c8ff]/20">ZERO MEMPOOL EXPOSURE</div>
+             <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/5 font-mono text-[10px] text-[#b7c8ff]/70 uppercase tracking-widest bg-[#b7c8ff]/5 border-[#b7c8ff]/20">JITO BUNDLE FINALITY</div>
           </div>
         </ShardStep>
 
-        <ShardStep step="Step 4" title="Verify the stream">
+        <ShardStep step="Phase 4" title="Integration Initiation">
           <p className="sis-body text-[14px]">
-            Run a heartbeat check to ensure the Liquidity Settlement Fabric synchronization is live and you are receiving bids.
+            We are currently onboarding a select cohort of high-performance execution desks. Submit your institutional public key and 30-day historical volume metrics to initiate the technical integration process.
           </p>
-          <div className="flex gap-3">
-             <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/5 font-mono text-[10px] text-[#b7c8ff]/70 uppercase tracking-widest">NODE_HEALTH_200</div>
-             <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/5 font-mono text-[10px] text-[#b7c8ff]/70 uppercase tracking-widest">SIPHON_ACTIVE</div>
-          </div>
+          <TerminalBlock code={`# Execute application request directly to the Spacedeck kernel\ncurl -X POST https://api.spacedeck.network/v1/solver/apply \\\n  -H "Content-Type: application/json" \\\n  -d '{\n    "pubkey": "YourSolanaPubkeyGoesHere",\n    "volume_30d_usd": 15000000,\n    "contact": "@YourTelegramHandle"\n  }'`} />
         </ShardStep>
       </div>
 
       {/* FOOTER SECTION */}
       <div className="mt-18 pt-10 border-t border-[#b7c8ff]/10 text-center">
-        <div className="text-[#b7c8ff] font-microgramma text-sm font-bold uppercase tracking-[0.3em] mb-6">READY TO SOLVE.</div>
-        <p className="sis-body text-[14px] mb-8">Monitor your win-rate and siphon capture in the Solver Dashboard.</p>
+        <div 
+          className="text-white uppercase italic leading-[0.85] text-center mb-6"
+          style={{
+            fontFamily: 'var(--font-microgramma), sans-serif',
+            fontWeight: 900,
+            fontSize: 'clamp(1rem, 2.5vw, 1.75rem)',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          BECOME OUR PARTNER
+        </div>
+        <p className="sis-body text-[14px] mb-8">Intelligence is decoupled from execution. Bring your latency.</p>
         
-        <p className="text-[12px] text-[#b7c8ff]/50 font-questrial font-bold uppercase tracking-[0.1em]">Full documentation at <span className="text-[#b7c8ff] hover:text-white cursor-pointer transition-colors">docs.spacedeck.xyz/solvers</span></p>
+        <p className="text-[12px] text-[#b7c8ff]/50 font-questrial font-bold uppercase tracking-[0.1em]">Protocol Architecture at <span className="text-[#b7c8ff] hover:text-white cursor-pointer transition-colors">docs.spacedeck.xyz/solvers</span></p>
         
         {/* RETURN BUTTON */}
         <button 

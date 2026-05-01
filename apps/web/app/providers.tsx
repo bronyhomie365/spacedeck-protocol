@@ -1,55 +1,34 @@
 "use client";
-import React, { useState } from 'react';
-import '@rainbow-me/rainbowkit/styles.css';
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
-import { WagmiProvider, createConfig, http } from 'wagmi';
-import { sepolia, arbitrumSepolia } from 'wagmi/chains';
-import { injected } from 'wagmi/connectors';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
-// [KINETIC RECONSTRUCTION 14.6]: RESILIENT TESTNET CORE
-// This config isolates the injected provider to prevent extension-level collisions.
-const config = createConfig({
-  chains: [sepolia, arbitrumSepolia],
-  connectors: [
-    injected({ 
-      target: 'metaMask',
-      shimDisconnect: true // Prevents stale session lockups
-    }),
-  ],
-  transports: {
-    [sepolia.id]: http('https://ethereum-sepolia-rpc.publicnode.com'),
-    [arbitrumSepolia.id]: http(),
-  },
-  ssr: true,
-});
+import { useMemo } from 'react';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { clusterApiUrl } from '@solana/web3.js';
+import '@solana/wallet-adapter-react-ui/styles.css';
 
-export const Providers = ({ children }: { children: React.ReactNode }) => {
-  const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        retry: false,
-      },
-    },
-  }));
+// [ONTOLOGICAL PURGE]: wagmi, viem, and RainbowKit EVM scaffolding eradicated.
+// [SVM REALITY]: Spacedeck is natively anchored to Solana.
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  const network = clusterApiUrl('mainnet-beta'); // 400ms Physical Settlement Layer
+  const endpoint = useMemo(() => network, [network]);
+
+  const wallets = useMemo(
+    () => [
+      new PhantomWalletAdapter(),
+      new SolflareWalletAdapter(),
+    ],
+    []
+  );
 
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider 
-          initialChain={sepolia} 
-          theme={darkTheme({
-            accentColor: '#22c55e',
-            accentColorForeground: 'black',
-            borderRadius: 'small',
-            fontStack: 'system',
-            overlayBlur: 'small',
-          })}
-        >
+    <ConnectionProvider endpoint={endpoint}>
+      <WalletProvider wallets={wallets} autoConnect>
+        <WalletModalProvider>
           {children}
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+        </WalletModalProvider>
+      </WalletProvider>
+    </ConnectionProvider>
   );
-};
+}

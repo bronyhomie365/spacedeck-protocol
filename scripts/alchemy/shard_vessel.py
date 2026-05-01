@@ -23,6 +23,8 @@ class ShardingEngine:
             "packages/eliza-plugin",
             "packages/zerebro-harness",
             "packages/contracts",
+            "services/engine",
+            "services/api",
             "packages/schema/openapi.yaml",
             "scripts/install_spacedeck.sh",
             "docs/strategic_library/05_clarity_manifesto_and_glossary.md",
@@ -36,8 +38,6 @@ class ShardingEngine:
         
         # [THE BLACKLIST]: Internal Sovereignty shards (Sealed IP)
         self.blacklist = [
-            "services/engine",
-            "services/api",
             ".env*",
             "node_modules",
             ".git",

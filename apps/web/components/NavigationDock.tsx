@@ -57,7 +57,7 @@ export const NavigationDock: React.FC<NavigationDockProps> = ({ activeId, onSele
         className="absolute inset-0 rounded-[36px] pointer-events-none z-30"
         style={{
           border: "1.5px solid transparent",
-          background: "linear-gradient(145deg, rgba(255, 255, 255, 0.3) 0%, rgba(100, 200, 255, 0.15) 25%, rgba(255, 255, 255, 0.05) 50%, rgba(150, 100, 255, 0.15) 75%, rgba(255, 255, 255, 0.3) 100%) border-box",
+          background: "linear-gradient(145deg, rgba(255, 255, 255, 0.5) 0%, rgba(100, 200, 255, 0.4) 25%, rgba(255, 255, 255, 0.05) 50%, rgba(150, 100, 255, 0.3) 75%, rgba(255, 255, 255, 0.5) 100%) border-box",
           WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
           maskComposite: "exclude",
@@ -85,7 +85,7 @@ export const NavigationDock: React.FC<NavigationDockProps> = ({ activeId, onSele
         return (
           <button
             key={item.id}
-            onClick={() => onSelect(item.id)}
+            onClick={() => item.id !== 'settings' && onSelect(item.id)}
             className={cn(
               'group relative flex items-center justify-center w-12 h-12 rounded-[15px] transition-all duration-300 z-40',
               isActive 

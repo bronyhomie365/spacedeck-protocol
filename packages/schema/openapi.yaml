@@ -80,7 +80,7 @@ components:
           $ref: '#/components/schemas/GoldenPayload'
         signature:
           type: string
-          description: EIP-712 cryptographic authorization signature.
+          description: Ed25519 cryptographic authorization signature (Near MPC).
         deadline:
           type: integer
           description: Unix timestamp for execution expiration.

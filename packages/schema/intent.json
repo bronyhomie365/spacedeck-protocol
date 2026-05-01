@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "GoldenPayload",
-  "description": "The irreducible geometric primitive of a Spacedeck settlement intent.",
+  "description": "The irreducible geometric primitive of a Spacedeck SVM settlement intent.",
   "type": "object",
   "properties": {
     "intent_id": {
@@ -10,11 +10,11 @@
     },
     "source_asset": {
       "type": "string",
-      "description": "The asset to be liquidated (e.g., USDC, SOL)."
+      "description": "The SPL token asset to be liquidated."
     },
     "target_asset": {
       "type": "string",
-      "description": "The asset to be acquired."
+      "description": "The SPL token asset to be acquired."
     },
     "amount_usd": {
       "type": "number",
@@ -23,13 +23,13 @@
     },
     "wallet_id": {
       "type": "string",
-      "pattern": "^(0x[a-fA-F0-9]{40}|[1-9A-HJ-NP-Za-km-z]{32,44})$",
-      "description": "The physical wallet address authorized for the strike."
+      "pattern": "^[1-9A-HJ-NP-Za-km-z]{32,44}$",
+      "description": "The physical Solana (SVM) base58 wallet address authorized for the strike. EVM addresses are strictly rejected."
     },
     "vector_type": {
       "type": "string",
-      "enum": ["SOLANA", "EVM", "NEAR"],
-      "description": "The topographical manifold for settlement."
+      "enum": ["SOLANA", "PURE_SWAP"],
+      "description": "The topographical manifold for settlement. STRICTLY SVM."
     }
   },
   "required": ["intent_id", "source_asset", "target_asset", "amount_usd", "wallet_id", "vector_type"]

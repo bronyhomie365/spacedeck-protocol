@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { cn } from './ui/primitives';
+import { useKineticStore } from '../store/useKineticStore';
 
 interface ConnectAgentButtonProps {
   onClick?: () => void;
@@ -13,37 +14,31 @@ interface ConnectAgentButtonProps {
  * Vibe: Recalibrated for absolute geometric centering and high-density brim cling.
  */
 export const ConnectAgentButton: React.FC<ConnectAgentButtonProps> = ({ onClick, className }) => {
+  const isUnlocked = useKineticStore((state) => state.isUnlocked);
+  const setUnlocked = useKineticStore((state) => state.setUnlocked);
+
+  const handleAction = () => {
+    if (!isUnlocked) {
+      setUnlocked(true);
+    } else if (onClick) {
+      onClick();
+    }
+  };
+
   return (
-    <div className="relative group flex items-center justify-center h-[44px] w-[194px]">
-      {/* HIGH-DENSITY CENTERED HALO (STATIC) */}
-      <div 
-        className="absolute rounded-full pointer-events-none z-0"
-        style={{
-          // Geometric Centering: Fixed size slightly larger than the button
-          width: '198px',
-          height: '48px',
-          backgroundColor: '#b7c8ff',
-          opacity: 0.95,
-          // Tight density: Low blur, minimal spread
-          filter: 'blur(6px)',
-          boxShadow: '0 0 4px 1px rgba(183, 200, 255, 0.9)',
-        }}
-      />
-      
+    <div className="relative flex items-center justify-center">
       <button
-        onClick={onClick}
+        onClick={handleAction}
         className={cn(
           "relative z-10 flex items-center justify-center rounded-full transition-all duration-300",
-          "bg-[#000000] border border-black", 
+          "border border-[#b7c8ff]/40 bg-[#000000] hover:border-[#b7c8ff]/80 hover:shadow-[0_0_35px_rgba(183,200,255,0.4)]", 
           "overflow-hidden",
           className
         )}
         style={{
           width: '194px',
           height: '44px',
-          // Centered shadow to prevent occlusion of the bottom glow
-          boxShadow: '0 0 32px rgba(0, 0, 0, 1)', 
-          transform: 'none',
+          boxShadow: '0 0 25px rgba(183,200,255,0.25), inset 0 0 12px rgba(183,200,255,0.1)', 
         }}
       >
         {/* LABEL: MICROGRAMMA FONT HARMONY - BOLD RESONANCE */}
@@ -56,7 +51,7 @@ export const ConnectAgentButton: React.FC<ConnectAgentButtonProps> = ({ onClick,
             fontFamily: "var(--font-microgramma), sans-serif",
           }}
         >
-          Connect Agent
+          {isUnlocked ? "Authorize Agent" : "Explore the Space"}
         </span>
       </button>
     </div>

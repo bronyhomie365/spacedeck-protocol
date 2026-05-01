@@ -5,22 +5,22 @@ import { cn } from './ui/primitives';
 
 interface NavDropdownProps {
   label: string;
+  tagline?: string;
   items?: { label: string; href?: string; id?: string; onClick?: () => void }[];
   className?: string;
   onClickLabel?: () => void;
 }
 
 /**
- * NavDropdown - Premium Linear Edition (Recalibrated)
- * Design: SF Pro, #b7c8ff Color Sync, Character Stretch
- * Vibe: Next-Level Web3 / Absolute Resonance
+ * NavDropdown - Mega-Manifold Edition
+ * Design: Full-Width Badge, Tagline Wing, Institutional Alignment
  */
-export const NavDropdown: React.FC<NavDropdownProps> = ({ label, items = [], className, onClickLabel }) => {
+export const NavDropdown: React.FC<NavDropdownProps> = ({ label, tagline, items = [], className, onClickLabel }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div 
-      className={cn("relative h-full flex items-center group", className)}
+      className={cn("h-full flex items-center group", className)}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
@@ -59,38 +59,62 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ label, items = [], cla
       <AnimatePresence>
         {isOpen && items.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            className="absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 min-w-[220px] p-2.5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] z-50"
+            className="fixed top-[112px] left-6 right-6 rounded-[32px] overflow-hidden z-50 border border-white/10"
+            style={{ originY: 0 }}
           >
-            <div className="absolute inset-0 bg-[#0a0a0a]/85 backdrop-blur-3xl border border-white/[0.08] rounded-2xl z-0" />
+            {/* EXACT MATCH NAVBAR SUBSTRATE: 1:1 Color & Blur */}
+            <div className="absolute inset-0 bg-[#6d6c6d]/40 backdrop-blur-[40px] backdrop-saturate-[180%] z-0" />
             
+            {/* MATCHING GRAIN LAYER */}
             <div 
-              className="absolute inset-0 opacity-[0.12] pointer-events-none mix-blend-soft-light z-10"
+              className="absolute inset-0 opacity-[0.25] pointer-events-none mix-blend-overlay z-10"
               style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='dropdownNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.98' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23dropdownNoise)'/%3E%3C/svg%3E")`,
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='sharpNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23sharpNoise)'/%3E%3C/svg%3E")`,
+                filter: 'contrast(1.5) brightness(0.9)',
               }}
             />
 
-            <div className="relative z-20 flex flex-col gap-1">
-              {items.map((item, idx) => (
-                <div
-                  key={idx}
-                  onClick={item.onClick}
-                  className="group/item cursor-pointer flex items-center justify-between px-4 py-3 rounded-xl hover:bg-white/[0.05] transition-all"
+            {/* SEAMLESS TOP SEAL (Visual connection to navbar) */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-white/5 z-20" />
+
+            <div className="relative z-30 flex px-20 py-14 gap-20">
+              {/* LEFT WING: TAGLINE (High-Density) */}
+              <div className="w-[42%] flex flex-col justify-center pr-12 border-r border-white/5">
+                <h3 
+                  className="text-white text-[22px] leading-tight font-medium"
+                  style={{ fontFamily: 'var(--font-questrial), sans-serif', letterSpacing: '-0.01em' }}
                 >
-                  <span 
-                    className="text-[12px] font-medium tracking-[0.05em] text-white/60 group-hover/item:text-[#b7c8ff] transition-colors"
-                    style={{ fontFamily: 'var(--font-questrial), sans-serif' }}
+                  {tagline}
+                </h3>
+                <div className="mt-6 w-16 h-[2px] bg-[#b7c8ff]/40 rounded-full" />
+              </div>
+
+              {/* RIGHT WING: ITEMS (2-Column Institutional Grid) */}
+              <div className="w-[58%] grid grid-cols-2 gap-3 items-center">
+                {items.map((item, idx) => (
+                  <button
+                    key={idx}
+                    onClick={item.onClick}
+                    className="group/item flex items-center justify-between px-6 py-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.08] hover:border-white/10 transition-all duration-300"
                   >
-                    {item.label}
-                  </span>
-                  <span className="text-[10px] text-white/0 group-hover/item:text-[#b7c8ff]/60 transition-all">🡮</span>
-                </div>
-              ))}
+                    <span 
+                      className="text-[14px] font-medium tracking-[0.03em] text-white/70 group-hover/item:text-[#b7c8ff] transition-colors"
+                      style={{ fontFamily: 'var(--font-questrial), sans-serif' }}
+                    >
+                      {item.label}
+                    </span>
+                    <span className="text-[12px] opacity-0 group-hover/item:opacity-60 transition-all translate-x-[-4px] group-hover/item:translate-x-0">🡭</span>
+                  </button>
+                ))}
+              </div>
             </div>
+
+            {/* BOTTOM GLOSS */}
+            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           </motion.div>
         )}
       </AnimatePresence>

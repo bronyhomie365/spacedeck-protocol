@@ -1,41 +1,46 @@
 version: '3.8'
 
+# [TOPOLOGICAL MANIFEST V3]: 2-Stage Shipping Architecture (Near MPC → Jito).
+# Arcium confidential clearing is a modular upgrade path (Phase 6).
+# The simulation lock has been severed. The protocol runs as a cohesive kinetic pillar.
+
 services:
-  # [THE HEART]: Rust Kinetic Engine
-  engine:
+  universal-socket:
+    build: ./services/api
+    ports:
+      - "8005:8005"
+    environment:
+      - KINETIC_ENGINE_URL=http://kinetic-heart:8080
+      - NEAR_SIGNER_ID=${NEAR_SIGNER_ID:-v1.signer.near}
+      - SPACEDECK_ENVIRONMENT=PHYSICAL_MAINNET
+    depends_on:
+      - kinetic-heart
+    networks:
+      - spacedeck-fabric
+
+  kinetic-heart:
     build: ./services/engine
     ports:
       - "8080:8080"
     environment:
-      - RUST_LOG=info
+      - SVM_RPC_URL=${SOLANA_RPC_URL:-https://api.mainnet-beta.solana.com}
+      - JITO_BLOCK_ENGINE_URL=${JITO_BLOCK_ENGINE_URL:-https://mainnet.block-engine.jito.wtf/api/v1/bundles}
+      - MANIFOLD_LOCK=SECURE_ED25519
     networks:
-      - spacedeck-net
+      - spacedeck-fabric
 
-  # [THE BRAIN]: Python API Orchestrator
-  api:
-    build: ./services/api
-    ports:
-      - "8000:8000"
-    environment:
-      - NEXT_PUBLIC_API_URL=http://api:8000
-      - KINETIC_HEART_URL=http://engine:8080
-    depends_on:
-      - engine
-    networks:
-      - spacedeck-net
-
-  # [THE VESSEL]: Next.js Frontend
-  web:
+  interface-shard:
     build: ./apps/web
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_API_URL=http://localhost:8005
+      - NEXT_PUBLIC_MODE=PHYSICAL
     depends_on:
-      - api
+      - universal-socket
     networks:
-      - spacedeck-net
+      - spacedeck-fabric
 
 networks:
-  spacedeck-net:
+  spacedeck-fabric:
     driver: bridge

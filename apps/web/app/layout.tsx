@@ -23,9 +23,15 @@ const bubbly = localFont({
   display: 'swap',
 });
 
+const dashDigital = localFont({
+  src: '../public/fonts/dash_digital.ttf',
+  variable: '--font-dash-digital',
+  display: 'swap',
+});
+
 export const metadata = {
-  title: 'Spacedeck-App | Institutional Yield Abstraction',
-  description: 'Omnichain yield abstraction engine for the agentic economy.',
+  title: 'Spacedeck Protocol | Zero-Custody Execution Pipeline for Agents on Solana',
+  description: 'Zero-custody execution rails to deploy proprietary math and protect algorithmic settlement.',
 };
 
 export default function RootLayout({
@@ -34,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${microgramma.variable} ${questrial.variable} ${bubbly.variable}`}>
+    <html lang="en" className={`${microgramma.variable} ${questrial.variable} ${bubbly.variable} ${dashDigital.variable}`}>
       <body className="bg-black">
         <Providers>
           {children}

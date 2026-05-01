@@ -9,11 +9,59 @@
   --font-questrial: var(--font-questrial);
   --font-microgramma: var(--font-microgramma);
   --font-bubbly: var(--font-bubbly);
+  --font-dash-digital: var(--font-dash-digital);
 }
 
 :root {
   --background: #020617;
   --foreground: #f8fafc;
+  --accent: #b7c8ff;
+}
+
+@keyframes manifestation-sweep {
+  0% { transform: translateY(-100vh); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+@keyframes projected-reveal {
+  0% { 
+    opacity: 0; 
+    filter: blur(12px) brightness(0);
+  }
+  100% { 
+    opacity: 1; 
+    filter: blur(0px) brightness(1);
+  }
+}
+
+.scanline-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  box-shadow: 0 0 30px var(--accent), 0 0 10px white;
+  z-index: 10000;
+  pointer-events: none;
+  animation: manifestation-sweep 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.holofractal-reveal {
+  animation: projected-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+  will-change: transform, opacity, filter;
+}
+
+.void-seal {
+  background-color: #020617;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  contain: paint;
+  position: relative;
+  z-index: 20;
 }
 
 * {
@@ -30,6 +78,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-questrial), -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "system-ui", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -142,13 +191,13 @@ code, pre, .font-mono {
   color: #b8d8f9;
   font-family: var(--font-bubbly), sans-serif;
   text-shadow: 0 0 15px rgba(184, 216, 249, 0.6);
-  font-size: 18px;
+  font-size: 28px;
 }
 
 .sis-step-title {
   color: white;
   font-family: var(--font-questrial), sans-serif;
-  font-size: 1.125rem;
+  font-size: 1.875rem;
   font-weight: 400;
   letter-spacing: 0.05em;
 }
@@ -191,4 +240,45 @@ code, pre, .font-mono {
 
 .sis-cta-secondary:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 💎 CRYSTALLINE KEYFRAMES: The Physics of the Vessel */
+@keyframes liquid-border-pulse {
+  0%, 100% { 
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.5) 0%, rgba(100, 200, 255, 0.4) 25%, rgba(150, 100, 255, 0.3) 50%, rgba(100, 200, 255, 0.35) 75%, rgba(255, 255, 255, 0.5) 100%) border-box; 
+  }
+  50% { 
+    background: linear-gradient(325deg, rgba(150, 100, 255, 0.4) 0%, rgba(100, 200, 255, 0.5) 25%, rgba(255, 255, 255, 0.65) 50%, rgba(100, 200, 255, 0.45) 75%, rgba(150, 100, 255, 0.4) 100%) border-box; 
+  }
+}
+
+@keyframes liquid-metal-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+@keyframes liquid-border-glow {
+  0%, 100% { opacity: 0.8; filter: blur(12px) brightness(1); }
+  50% { opacity: 1; filter: blur(16px) brightness(1.3); }
+}
+
+@font-face {
+  font-family: 'DashDigital';
+  src: url('/fonts/dash_digital.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-dash-digital: 'DashDigital', monospace;
+  --font-bubbly: 'Bubbly', cursive;
+}
+
+@font-face {
+  font-family: 'Bubbly';
+  src: url('/fonts/bubblyfont.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }

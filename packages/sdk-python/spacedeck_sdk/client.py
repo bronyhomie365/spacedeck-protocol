@@ -11,18 +11,35 @@ from .schemas import GoldenPayload, ExecutionRequest
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("spacedeck_sdk")
 
-class SpacedeckClient:
-    """[UNIVERSAL SOCKET]: Institutional-grade execution harness."""
-    def __init__(self, api_key: str, base_url: str = "https://api.spacedeck.xyz/api/v1"):
-        self.api_key = api_key
+class SpacedeckVessel:
+    """[UNIVERSAL SOCKET]: Institutional-grade keyless execution harness."""
+    def __init__(self, near_account: str, base_url: str = "https://api.spacedeck.network/v1"):
+        self.near_account = near_account
         self.base_url = base_url
-        self.headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
+        self.headers = {
+            "X-Near-Account": self.near_account,
+            "Content-Type": "application/json"
+        }
 
-    async def execute_strike(self, request: ExecutionRequest) -> dict:
-        """Submits a pre-compiled GoldenPayload to the Settlement Fabric."""
-        logger.info("[SOCKET] Broadcasting strict intent to Spacedeck Engine...")
+    async def strike(self, action: str, input_mint: str, output_mint: str, amount: int, max_slippage_bps: int = 10, **kwargs) -> dict:
+        """Dispatches deterministic SVM route via Near MPC signature."""
+        logger.info(f"[SOCKET] Broadcasting strict intent for {self.near_account} to Spacedeck Engine...")
+        
+        # Construct the intent payload internally
+        payload = {
+            "actor": {"near_account": self.near_account},
+            "action": {
+                "type": action,
+                "params": {
+                    "input_mint": input_mint,
+                    "output_mint": output_mint,
+                    "amount": str(amount),
+                    "max_slippage_bps": max_slippage_bps
+                }
+            }
+        }
+        
         async with httpx.AsyncClient() as client:
-            # Note: request is already a Pydantic model
-            response = await client.post(f"{self.base_url}/strike", headers=self.headers, json=request.dict())
+            response = await client.post(f"{self.base_url}/ingress", headers=self.headers, json=payload)
             response.raise_for_status()
             return response.json()
